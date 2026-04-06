@@ -13,3 +13,7 @@ export type MealType = {
 	strMeal: string;
 	strMealThumb: string;
 };
+
+export type Item = {
+	name: string;
+};

@@ -1,13 +1,7 @@
 "use client";
-import { useEffect, useState } from "react";
-import {
-	LIST_ALL_AREAS_URL,
-	LIST_ALL_CATEGORIES_URL,
-	RANDOM_MEAL_URL,
-	SEARCH_MEAL_URL,
-} from "../constants";
-import { AreaType, CategoryType, MealType } from "../types";
-import { Loader } from "./Loader";
+import { useState } from "react";
+import { SEARCH_MEAL_URL } from "../constants";
+import { MealType } from "../types";
 
 export default function Search() {
 	const [search, setSearch] = useState<string | null>(null);
@@ -27,7 +21,7 @@ export default function Search() {
 
 	return (
 		<section>
-			<div>
+			<div className='flex gap-3'>
 				<label htmlFor='search'>Search by name:</label>
 				<input
 					placeholder='Pasta...'
@@ -38,8 +32,12 @@ export default function Search() {
 			</div>
 			{results.length > 0 && (
 				<div>
-					<h3>Results:</h3>
-					{results.map((meal) => meal.strMeal)}
+					<div>
+						<h3 className='font-xl py-2'>Results:</h3>
+						{results.map((meal) => (
+							<p key={meal.idMeal}>{meal.strMeal}</p>
+						))}
+					</div>
 				</div>
 			)}
 		</section>

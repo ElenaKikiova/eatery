@@ -7,20 +7,27 @@ import {
 	SEARCH_MEAL_URL,
 } from "./constants";
 import { Loader } from "./components/Loader";
-import { AreaType, CategoryType, MealType } from "./types";
+import { AreaType, CategoryType, Item, MealType } from "./types";
 import Search from "./components/Search";
 import { MealDisplay } from "./components/MealDisplay";
+import { FilterDropdown } from "./components/FilterDropdown";
 
 export default function Home() {
 	const [randomMeal, setRandomMeal] = useState<MealType | null>(null);
-	const [areas, setAreas] = useState<AreaType[]>([]);
-	const [categories, setCategories] = useState<CategoryType[]>([]);
+	const [areas, setAreas] = useState<Item[]>([]);
+	const [categories, setCategories] = useState<Item[]>([]);
 	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
 		fetch(LIST_ALL_CATEGORIES_URL)
 			.then((res) => res.json())
-			.then(({ meals }) => setCategories(meals))
+			.then(({ meals }) =>
+				setCategories(
+					meals.map((meal: MealType) => ({
+						name: meal.strCategory,
+					}))
+				)
+			)
 			.catch((error) => {
 				console.error(error);
 				setError("There was an error while fetching categories");
@@ -29,7 +36,13 @@ export default function Home() {
 
 		fetch(LIST_ALL_AREAS_URL)
 			.then((res) => res.json())
-			.then(({ meals }) => setAreas(meals))
+			.then(({ meals }) =>
+				setAreas(
+					meals.map((area: AreaType) => ({
+						name: area.strArea,
+					}))
+				)
+			)
 			.catch((error) => {
 				console.error(error);
 				setError("There was an error while fetching areas");
@@ -47,37 +60,19 @@ export default function Home() {
 	}, []);
 
 	return (
-		<section>
-			<h1>THE EATERY</h1>
-			<div>
-				<h2>Categories</h2>
-
-				{categories.length === 0 ? (
-					<Loader />
-				) : (
-					<select>
-						{categories.map((category: CategoryType) => (
-							<option key={category.strCategory}>{category.strCategory}</option>
-						))}
-					</select>
-				)}
-
-				{areas.length === 0 ? (
-					<Loader />
-				) : (
-					<select>
-						{areas.map((area: AreaType) => (
-							<option key={area.strArea}>{area.strArea}</option>
-						))}
-					</select>
-				)}
-
-				<Search />
+		<main className='p-15 max-w-xxxl mx-auto'>
+			<h1 className='font-bold text-4xl'>THE EATERY</h1>
+			<div className='flex'>
+				<div className='flex-grow'>
+					<FilterDropdown title='Category' list={categories} />
+					<FilterDropdown title='Area' list={areas} />
+					<Search />
+				</div>
+				<div className='w-1/4'>
+					<h2>Random meal proposition:</h2>
+					{randomMeal === null ? <Loader /> : <MealDisplay meal={randomMeal} />}
+				</div>
 			</div>
-			<aside>
-				<h2>Random meal proposition:</h2>
-				{randomMeal === null ? <Loader /> : <MealDisplay meal={randomMeal} />}
-			</aside>
-		</section>
+		</main>
 	);
 }
