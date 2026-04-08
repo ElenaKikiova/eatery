@@ -20,6 +20,7 @@ export type IngredientsAndMeasures = {
 };
 
 export type MealType = {
+	id: string;
 	name: string;
 	area: string;
 	thumbnail: string;

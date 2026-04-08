@@ -36,7 +36,7 @@ export default function Search() {
 				<div>
 					<h3 className='font-xl py-2'>Results:</h3>
 					{results.map((meal) => (
-						<MealSearchItem key={meal.idMeal} meal={meal} />
+						<MealSearchItem key={meal.id} meal={meal} />
 					))}
 				</div>
 			)}

@@ -47,12 +47,14 @@ export default function Home() {
 
 	return (
 		<main className='p-15 max-w-xxxl mx-auto'>
-			<h1 className='font-bold text-4xl'>THE EATERY</h1>
-			<div className='flex'>
-				<div className='flex-grow'>
-					<FilterDropdown title='Category' list={categories} />
-					<FilterDropdown title='Area' list={areas} />
-					<Search />
+			<div className='flex gap-5'>
+				<div className='w-2/3'>
+					<h1 className='font-bold text-4xl mb-5'>THE EATERY</h1>
+					<div>
+						<FilterDropdown title='Category' list={categories} />
+						<FilterDropdown title='Area' list={areas} />
+						<Search />
+					</div>
 				</div>
 				<div className='w-1/3 p-4'>
 					<h2 className='text-2xl my-4'>Random meal proposition:</h2>

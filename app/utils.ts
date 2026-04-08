@@ -29,6 +29,7 @@ export const mapMeal = (meal: RawMealType): MealType => {
 
 	const ingredientsAndMeasures = Object.values(ingredientsMap);
 	return {
+		id: meal.idMeal,
 		name: meal.strMeal,
 		area: meal.strArea,
 		category: meal.strCategory,
