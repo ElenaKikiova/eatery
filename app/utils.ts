@@ -34,6 +34,10 @@ export const mapMeal = (meal: RawMealType): MealType => {
 		area: meal.strArea,
 		category: meal.strCategory,
 		thumbnail: meal.strMealThumb,
+		recipe: meal.strInstructions,
+		youtube: meal.strYoutube,
+		source: meal.strSource,
 		ingredientsAndMeasures,
+		tags: meal.strTags,
 	};
 };

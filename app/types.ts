@@ -12,6 +12,10 @@ export type RawMealType = {
 	idMeal: string;
 	strMeal: string;
 	strMealThumb: string;
+	strInstructions: string;
+	strSource: string;
+	strYoutube: string;
+	strTags: string;
 };
 
 export type IngredientsAndMeasures = {
@@ -26,6 +30,10 @@ export type MealType = {
 	thumbnail: string;
 	category: string;
 	ingredientsAndMeasures: IngredientsAndMeasures[];
+	recipe: string;
+	source: string;
+	youtube: string;
+	tags: string;
 };
 
 export type Item = {

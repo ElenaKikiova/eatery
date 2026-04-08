@@ -46,8 +46,8 @@ export default function Home() {
 	}, []);
 
 	return (
-		<main className='p-15 max-w-xxxl mx-auto'>
-			<div className='flex gap-5'>
+		<main className='p-15 w-full max-w-[1200px] mx-auto'>
+			<div className='flex gap-5 w-full'>
 				<div className='w-2/3'>
 					<h1 className='font-bold text-4xl mb-5'>THE EATERY</h1>
 					<div>
