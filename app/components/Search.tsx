@@ -11,6 +11,7 @@ export default function Search() {
 	const [error, setError] = useState<string | null>(null);
 
 	const searchByName = () => {
+		if (!search || search.trim() === "") return;
 		fetch(`${SEARCH_MEAL_URL}?s=${search}`)
 			.then((res) => res.json())
 			.then(({ meals }) => setResults(meals.map(mapMeal)))
@@ -34,7 +35,7 @@ export default function Search() {
 			</div>
 			{results.length > 0 && (
 				<div>
-					<h3 className='font-xl py-2'>Results:</h3>
+					<h3 className='text-2xl my-4'>Results:</h3>
 					{results.map((meal) => (
 						<MealSearchItem key={meal.id} meal={meal} />
 					))}
