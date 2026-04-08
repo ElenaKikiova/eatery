@@ -1,16 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
-import {
-	LIST_ALL_AREAS_URL,
-	LIST_ALL_CATEGORIES_URL,
-	RANDOM_MEAL_URL,
-	SEARCH_MEAL_URL,
-} from "./constants";
+import { LIST_ALL_AREAS_URL, LIST_ALL_CATEGORIES_URL, RANDOM_MEAL_URL } from "./constants";
 import { Loader } from "./components/Loader";
-import { AreaType, CategoryType, Item, MealType } from "./types";
+import { Item, MealType } from "./types";
 import Search from "./components/Search";
 import { MealDisplay } from "./components/MealDisplay";
 import { FilterDropdown } from "./components/FilterDropdown";
+import { mapFilter, mapMeal } from "./utils";
 
 export default function Home() {
 	const [randomMeal, setRandomMeal] = useState<MealType | null>(null);
@@ -18,16 +14,12 @@ export default function Home() {
 	const [categories, setCategories] = useState<Item[]>([]);
 	const [error, setError] = useState<string | null>(null);
 
+	console.log(randomMeal);
+
 	useEffect(() => {
 		fetch(LIST_ALL_CATEGORIES_URL)
 			.then((res) => res.json())
-			.then(({ meals }) =>
-				setCategories(
-					meals.map((meal: MealType) => ({
-						name: meal.strCategory,
-					}))
-				)
-			)
+			.then(({ meals }) => setCategories(meals.map((item) => mapFilter(item, "strCategory"))))
 			.catch((error) => {
 				console.error(error);
 				setError("There was an error while fetching categories");
@@ -36,13 +28,7 @@ export default function Home() {
 
 		fetch(LIST_ALL_AREAS_URL)
 			.then((res) => res.json())
-			.then(({ meals }) =>
-				setAreas(
-					meals.map((area: AreaType) => ({
-						name: area.strArea,
-					}))
-				)
-			)
+			.then(({ meals }) => setAreas(meals.map((item) => mapFilter(item, "strArea"))))
 			.catch((error) => {
 				console.error(error);
 				setError("There was an error while fetching areas");
@@ -51,7 +37,7 @@ export default function Home() {
 
 		fetch(RANDOM_MEAL_URL)
 			.then((res) => res.json())
-			.then(({ meals }) => setRandomMeal(meals[0]))
+			.then(({ meals }) => setRandomMeal(mapMeal(meals[0])))
 			.catch((error) => {
 				console.error(error);
 				setError("There was an error while fetching random meal");
@@ -68,8 +54,8 @@ export default function Home() {
 					<FilterDropdown title='Area' list={areas} />
 					<Search />
 				</div>
-				<div className='w-1/4'>
-					<h2>Random meal proposition:</h2>
+				<div className='w-1/3 p-4'>
+					<h2 className='text-2xl my-4'>Random meal proposition:</h2>
 					{randomMeal === null ? <Loader /> : <MealDisplay meal={randomMeal} />}
 				</div>
 			</div>

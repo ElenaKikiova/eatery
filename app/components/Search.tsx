@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { SEARCH_MEAL_URL } from "../constants";
 import { MealType } from "../types";
+import { MealSearchItem } from "./MealSearchItem";
+import { mapMeal } from "../utils";
 
 export default function Search() {
 	const [search, setSearch] = useState<string | null>(null);
@@ -11,7 +13,7 @@ export default function Search() {
 	const searchByName = () => {
 		fetch(`${SEARCH_MEAL_URL}?s=${search}`)
 			.then((res) => res.json())
-			.then(({ meals }) => setResults(meals))
+			.then(({ meals }) => setResults(meals.map(mapMeal)))
 			.catch((error) => {
 				console.error(error);
 				setError("There was an error while fetching meal");
@@ -32,12 +34,10 @@ export default function Search() {
 			</div>
 			{results.length > 0 && (
 				<div>
-					<div>
-						<h3 className='font-xl py-2'>Results:</h3>
-						{results.map((meal) => (
-							<p key={meal.idMeal}>{meal.strMeal}</p>
-						))}
-					</div>
+					<h3 className='font-xl py-2'>Results:</h3>
+					{results.map((meal) => (
+						<MealSearchItem key={meal.idMeal} meal={meal} />
+					))}
 				</div>
 			)}
 		</section>

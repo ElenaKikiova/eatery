@@ -6,12 +6,25 @@ export type AreaType = {
 	strArea: string;
 };
 
-export type MealType = {
+export type RawMealType = {
 	strArea: string;
 	strCategory: string;
 	idMeal: string;
 	strMeal: string;
 	strMealThumb: string;
+};
+
+export type IngredientsAndMeasures = {
+	ingredient: string;
+	measure: string;
+};
+
+export type MealType = {
+	name: string;
+	area: string;
+	thumbnail: string;
+	category: string;
+	ingredientsAndMeasures: IngredientsAndMeasures[];
 };
 
 export type Item = {
