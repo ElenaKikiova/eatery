@@ -23,9 +23,5 @@ export default function Meal() {
 			});
 	}, [id]);
 
-	return (
-		<main className='p-15 w-full max-w-[1200px]  mx-auto'>
-			{meal === null ? <Loader /> : <MealDisplay meal={meal} fullDisplay />}
-		</main>
-	);
+	return meal === null ? <Loader /> : <MealDisplay meal={meal} fullDisplay />;
 }

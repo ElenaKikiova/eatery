@@ -39,3 +39,5 @@ export type MealType = {
 export type Item = {
 	name: string;
 };
+
+export type FilterSelection = Record<string, string>;

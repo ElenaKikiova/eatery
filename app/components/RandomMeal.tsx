@@ -5,7 +5,7 @@ import { MealType } from "../types";
 import { Loader } from "./Loader";
 import { MealDisplay } from "./MealDisplay";
 
-export const RandomMeal = () => {
+export const RandomMeal = ({ isRandomMealPage = false }: { isRandomMealPage?: boolean }) => {
 	const [randomMeal, setRandomMeal] = useState<MealType | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	useEffect(() => {
@@ -21,8 +21,12 @@ export const RandomMeal = () => {
 
 	return (
 		<>
-			<h2 className='text-2xl my-4'>Random meal proposition:</h2>
-			{randomMeal === null ? <Loader /> : <MealDisplay meal={randomMeal} />}
+			<h2 className='text-2xl my-4 block'>Random meal proposition:</h2>
+			{randomMeal === null ? (
+				<Loader />
+			) : (
+				<MealDisplay meal={randomMeal} fullDisplay={isRandomMealPage} />
+			)}
 		</>
 	);
 };
