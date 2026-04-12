@@ -1,14 +1,38 @@
 "use client";
-import { useState } from "react";
-import { SEARCH_MEAL_URL } from "../constants";
-import { MealType } from "../types";
+import { useEffect, useState } from "react";
+import { LIST_ALL_AREAS_URL, LIST_ALL_CATEGORIES_URL, SEARCH_MEAL_URL } from "../constants";
+import { Item, MealType } from "../types";
 import { MealSearchItem } from "./MealSearchItem";
-import { mapMeal } from "../utils";
+import { mapFilter, mapMeal } from "../utils";
+import { FilterDropdown } from "./FilterDropdown";
 
 export default function Search() {
 	const [search, setSearch] = useState<string | null>(null);
 	const [results, setResults] = useState<MealType[]>([]);
 	const [error, setError] = useState<string | null>(null);
+
+	const [areas, setAreas] = useState<Item[]>([]);
+	const [categories, setCategories] = useState<Item[]>([]);
+
+	useEffect(() => {
+		fetch(LIST_ALL_CATEGORIES_URL)
+			.then((res) => res.json())
+			.then(({ meals }) => setCategories(meals.map((item) => mapFilter(item, "strCategory"))))
+			.catch((error) => {
+				console.error(error);
+				setError("There was an error while fetching categories");
+				setCategories([]);
+			});
+
+		fetch(LIST_ALL_AREAS_URL)
+			.then((res) => res.json())
+			.then(({ meals }) => setAreas(meals.map((item) => mapFilter(item, "strArea"))))
+			.catch((error) => {
+				console.error(error);
+				setError("There was an error while fetching areas");
+				setAreas([]);
+			});
+	}, []);
 
 	const searchByName = () => {
 		if (!search || search.trim() === "") return;
@@ -24,6 +48,8 @@ export default function Search() {
 
 	return (
 		<section>
+			<FilterDropdown title='Category' list={categories} />
+			<FilterDropdown title='Area' list={areas} />
 			<div className='flex gap-3'>
 				<label htmlFor='search'>Search by name:</label>
 				<input
