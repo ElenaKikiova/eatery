@@ -2,47 +2,47 @@
 
 import { FilterDropdown } from "@/app/components/FilterDropdown";
 import { MealSearchItem } from "@/app/components/MealSearchItem";
-import { FITLER_MEALS, LIST_ALL_AREAS_URL } from "@/app/constants";
+import { FITLER_MEALS, LIST_ALL_AREAS_URL, LIST_ALL_CATEGORIES_URL } from "@/app/constants";
 import { Item, MealType } from "@/app/types";
 import { mapFilter, mapMeal } from "@/app/utils";
 import { useEffect, useState } from "react";
 
 export default function Meal() {
-	const [areas, setAreas] = useState<Item[]>([]);
+	const [category, setCategory] = useState<string | null>("Breakfast");
 	const [results, setResults] = useState<MealType[]>([]);
-	const [area, setArea] = useState<string | null>("Mexican");
 	const [error, setError] = useState<string | null>(null);
+	const [categories, setCategories] = useState<Item[]>([]);
 
 	useEffect(() => {
-		fetch(LIST_ALL_AREAS_URL)
+		fetch(LIST_ALL_CATEGORIES_URL)
 			.then((res) => res.json())
-			.then(({ meals }) => setAreas(meals.map((item) => mapFilter(item, "strArea"))))
+			.then(({ meals }) => setCategories(meals.map((item) => mapFilter(item, "strCategory"))))
 			.catch((error) => {
 				console.error(error);
-				setError("There was an error while fetching areas");
-				setAreas([]);
+				setError("There was an error while fetching categories");
+				setCategories([]);
 			});
 	}, []);
 
 	useEffect(() => {
-		if (!area) return;
-		fetch(`${FITLER_MEALS}?a=${area}`)
+		if (!category) return;
+		fetch(`${FITLER_MEALS}?c=${category}`)
 			.then((res) => res.json())
 			.then(({ meals }) => setResults(meals.map(mapMeal)))
 			.catch((error) => {
 				console.error(error);
 				setError("There was an error while fetching categories");
-				setArea(null);
+				setCategories([]);
 			});
-	}, [area]);
+	}, [category]);
 
 	return (
 		<>
 			<FilterDropdown
 				title='Area'
-				list={areas}
-				setSelected={setArea}
-				defaultValue='Mexican'
+				list={categories}
+				setSelected={setCategory}
+				defaultValue='Breakfast'
 			/>
 
 			{results.length > 0 && (

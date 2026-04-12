@@ -16,11 +16,11 @@ export default function Menu() {
 				<Link href='/meal/random' className='px-2 flex items-end justify-center'>
 					Random meal
 				</Link>
+				<Link href='/meal/by-category' className='px-2 flex items-end justify-center'>
+					By category
+				</Link>
 				<Link href='/meal/by-area' className='px-2 flex items-end justify-center'>
 					By area
-				</Link>
-				<Link href='/meal/by-name' className='px-2 flex items-end justify-center'>
-					By name
 				</Link>
 			</div>
 		</nav>
