@@ -25,7 +25,7 @@ export default function Meal() {
 				// Note: when meal id is invalid, the API returns status 200 with { meal: "Invalid id" }
 				const meal = meals[0];
 				// If meal does not have id, it's not a meal, it's the error message "Invalid id"
-				if (!meal.id) throw new Error(meals);
+				if (!meal.idMeal) throw new Error(meals);
 				setMeal(mapMeal(meal));
 			})
 			.catch((error) => {
