@@ -1,5 +1,10 @@
 import { IngredientsAndMeasures, MealType, RawMealType } from "./types";
 
+export const transformResult = (meals: RawMealType[] | null) => {
+	if (meals && meals.length > 0) return meals.map(mapMeal);
+	else return [];
+};
+
 export const mapFilter = (data: any, key: string) => ({
 	name: data[key],
 });
@@ -31,7 +36,7 @@ export const mapMeal = (meal: RawMealType): MealType => {
 	return {
 		id: meal.idMeal,
 		name: meal.strMeal,
-		area: meal.strArea,
+		country: meal.strCountry,
 		category: meal.strCategory,
 		thumbnail: meal.strMealThumb,
 		recipe: meal.strInstructions,

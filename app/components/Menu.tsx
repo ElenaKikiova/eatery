@@ -19,8 +19,8 @@ export default function Menu() {
 				<Link href='/meal/by-category' className='px-2 flex items-end justify-center'>
 					By category
 				</Link>
-				<Link href='/meal/by-area' className='px-2 flex items-end justify-center'>
-					By area
+				<Link href='/meal/by-country' className='px-2 flex items-end justify-center'>
+					By country
 				</Link>
 			</div>
 		</nav>

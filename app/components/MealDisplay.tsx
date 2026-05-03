@@ -8,7 +8,7 @@ export const MealDisplay = ({
 	meal: MealType;
 	fullDisplay?: boolean;
 }) => {
-	const { id, thumbnail, name, category, area, ingredientsAndMeasures, recipe } = meal;
+	const { id, thumbnail, name, category, country, ingredientsAndMeasures, recipe } = meal;
 	return (
 		<div
 			className={`relative flex flex-col gap-2 ${
@@ -22,7 +22,7 @@ export const MealDisplay = ({
 				/>
 				<p className='text-2xl my-1'>{name}</p>
 				<p className='font-bold'>Category: {category}</p>
-				<p className='font-bold'>Area: {area}</p>
+				<p className='font-bold'>Country: {country}</p>
 				<p className='font-bold mt-4'>Ingredients: </p>
 				{ingredientsAndMeasures.map(({ ingredient, measure }, index) => (
 					<p key={index}>

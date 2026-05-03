@@ -2,10 +2,11 @@
 import { RandomMeal } from "./components/RandomMeal";
 import { FilterDropdown } from "./components/FilterDropdown";
 import { useEffect, useState } from "react";
-import { Item, MealType } from "./types";
+import { ItemType, MealType } from "./types";
 import { FITLER_MEALS, LIST_ALL_CATEGORIES_URL, SEARCH_MEAL_URL } from "./constants";
-import { mapFilter, mapMeal } from "./utils";
+import { mapFilter, mapMeal, transformResult } from "./utils";
 import { MealSearchItem } from "./components/MealSearchItem";
+import { MealsList } from "./components/MealsList";
 
 export default function Home() {
 	const [search, setSearch] = useState<string | null>(null);
@@ -16,7 +17,9 @@ export default function Home() {
 		if (!search || search.trim() === "") return;
 		fetch(`${SEARCH_MEAL_URL}?s=${search}`)
 			.then((res) => res.json())
-			.then(({ meals }) => setResults(meals.map(mapMeal)))
+			.then(({ meals }) => {
+				setResults(transformResult(meals));
+			})
 			.catch((error) => {
 				console.error(error);
 				setError("There was an error while fetching meal");
@@ -36,14 +39,8 @@ export default function Home() {
 					></input>
 					<button onClick={searchByName}>Search</button>
 				</div>
-				{results.length > 0 && (
-					<div>
-						<h3 className='text-2xl my-4'>Results:</h3>
-						{results.map((meal) => (
-							<MealSearchItem key={meal.id} meal={meal} />
-						))}
-					</div>
-				)}
+
+				<MealsList meals={results} />
 			</div>
 			<div className='w-1/3 p-4'>
 				<RandomMeal />

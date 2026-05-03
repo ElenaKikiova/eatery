@@ -2,12 +2,12 @@ export type CategoryType = {
 	strCategory: string;
 };
 
-export type AreaType = {
-	strArea: string;
+export type CountryType = {
+	strCountry: string;
 };
 
 export type RawMealType = {
-	strArea: string;
+	strCountry: string;
 	strCategory: string;
 	idMeal: string;
 	strMeal: string;
@@ -26,7 +26,7 @@ export type IngredientsAndMeasures = {
 export type MealType = {
 	id: string;
 	name: string;
-	area: string;
+	country: string;
 	thumbnail: string;
 	category: string;
 	ingredientsAndMeasures: IngredientsAndMeasures[];
@@ -36,7 +36,7 @@ export type MealType = {
 	tags: string;
 };
 
-export type Item = {
+export type ItemType = {
 	name: string;
 };
 

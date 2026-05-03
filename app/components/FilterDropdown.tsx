@@ -1,22 +1,40 @@
-import { Item } from "../types";
+import { useEffect, useState } from "react";
+import { ItemType } from "../types";
 import { Loader } from "./Loader";
+import { mapFilter } from "@/app/utils";
 
 export const FilterDropdown = ({
 	title,
-	list,
+	fetchUrl,
 	defaultValue,
 	setSelected,
 }: {
 	title: string;
-	list: Item[];
+	fetchUrl: string;
 	defaultValue: string;
 	setSelected: (value: string) => void;
 }) => {
+	const [error, setError] = useState<string | null>(null);
+	const [items, setItems] = useState<ItemType[]>([]);
+
+	useEffect(() => {
+		fetch(fetchUrl)
+			.then((res) => res.json())
+			.then(({ meals }) =>
+				setItems(meals.map((item: ItemType) => mapFilter(item, `str${title}`)))
+			)
+			.catch((error) => {
+				console.error(error);
+				setError("There was an error while fetching categories");
+				setItems([]);
+			});
+	}, []);
+
 	return (
 		<div className='flex gap-3'>
 			<label htmlFor={`dropdown-${title}`}>{title}</label>
 
-			{list.length === 0 ? (
+			{items.length === 0 ? (
 				<Loader />
 			) : (
 				<select
@@ -24,7 +42,7 @@ export const FilterDropdown = ({
 					onChange={(e) => setSelected(e.target.value)}
 					defaultValue={defaultValue}
 				>
-					{list.map((item: Item) => (
+					{items.map((item: ItemType) => (
 						<option key={item.name}>{item.name}</option>
 					))}
 				</select>
