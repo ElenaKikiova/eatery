@@ -1,4 +1,6 @@
+import { ERRORS } from "../constants";
 import { MealType } from "../types";
+import { ErrorMessage } from "./ErrorMessage";
 import { MealSearchItem } from "./MealSearchItem";
 
 export const MealsList = ({
@@ -9,7 +11,7 @@ export const MealsList = ({
 	meals: MealType[] | null;
 }) => {
 	if (meals === null) return;
-	if (meals.length === 0) return <p>Not found</p>;
+	if (meals.length === 0) return <ErrorMessage>{ERRORS.NOT_FOUND}</ErrorMessage>;
 
 	return (
 		<div>

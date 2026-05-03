@@ -22,6 +22,7 @@ export default function Meal() {
 		fetch(`${GET_MEAL_BY_ID_URL}${id}`)
 			.then((res) => res.json())
 			.then(({ meals }) => {
+				if (!meals) throw new Error(ERRORS.NOT_FOUND);
 				// Note: when meal id is invalid, the API returns status 200 with { meal: "Invalid id" }
 				const meal = meals[0];
 				// If meal does not have id, it's not a meal, it's the error message "Invalid id"

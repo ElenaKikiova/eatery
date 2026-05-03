@@ -14,4 +14,5 @@ export const ERRORS = {
 	BY_CAEGORY: "There was an error while fetching recipes for the selected category",
 	BY_COUNTRY: "There was an error while fetching recipes for the selected country",
 	INVALID_ID: "Please enter a valid id",
+	NOT_FOUND: "Not found",
 };
