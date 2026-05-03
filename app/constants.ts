@@ -10,7 +10,7 @@ export const ERRORS = {
 	MEAL: "There was an error while fetching meals",
 	CATEGORIES_LIST: "There was an error while fetching categories list",
 	RANDOM_MEAL: "There was an error while fetching random meal",
-    BY_ID: "There was an error while fetching meal information";
+	BY_ID: "There was an error while fetching meal information",
 	BY_CAEGORY: "There was an error while fetching recipes for the selected category",
 	BY_COUNTRY: "There was an error while fetching recipes for the selected country",
 	INVALID_ID: "Please enter a valid id",
