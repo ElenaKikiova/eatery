@@ -1,8 +1,8 @@
 "use client";
 
-import { Loader } from "@/app/components/Loader";
+import { ErrorMessage } from "@/app/components/ErrorMessage";
 import { MealDisplay } from "@/app/components/MealDisplay";
-import { GET_MEAL_BY_ID_URL } from "@/app/constants";
+import { ERRORS, GET_MEAL_BY_ID_URL } from "@/app/constants";
 import { MealType } from "@/app/types";
 import { mapMeal } from "@/app/utils";
 import { useParams } from "next/navigation";
@@ -14,14 +14,25 @@ export default function Meal() {
 	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
+		if (!Number(id)) {
+			setError(ERRORS.INVALID_ID);
+			return;
+		}
+
 		fetch(`${GET_MEAL_BY_ID_URL}${id}`)
 			.then((res) => res.json())
-			.then(({ meals }) => setMeal(mapMeal(meals[0])))
+			.then(({ meals }) => {
+				// Note: when meal id is invalid, the API returns status 200 with { meal: "Invalid id" }
+				const meal = meals[0];
+				// If meal does not have id, it's not a meal, it's the error message "Invalid id"
+				if (!meal.id) throw new Error(meals);
+				setMeal(mapMeal(meal));
+			})
 			.catch((error) => {
 				console.error(error);
-				setError("There was an error while fetching categories");
+				setError(ERRORS.BY_ID);
 			});
 	}, [id]);
 
-	return meal === null ? <Loader /> : <MealDisplay meal={meal} fullDisplay />;
+	return error ? <ErrorMessage>{error}</ErrorMessage> : <MealDisplay meal={meal} fullDisplay />;
 }

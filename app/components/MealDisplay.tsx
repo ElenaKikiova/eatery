@@ -1,13 +1,16 @@
 import Link from "next/link";
 import { MealType } from "../types";
+import { Loader } from "./Loader";
 
 export const MealDisplay = ({
 	meal,
 	fullDisplay = false,
 }: {
-	meal: MealType;
+	meal: MealType | null;
 	fullDisplay?: boolean;
 }) => {
+	if (meal === null) return <Loader />;
+
 	const { id, thumbnail, name, category, country, ingredientsAndMeasures, recipe } = meal;
 	return (
 		<div

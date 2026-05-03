@@ -1,11 +1,11 @@
 "use client";
 
+import { ErrorMessage } from "@/app/components/ErrorMessage";
 import { FilterDropdown } from "@/app/components/FilterDropdown";
-import { MealSearchItem } from "@/app/components/MealSearchItem";
 import { MealsList } from "@/app/components/MealsList";
-import { FITLER_MEALS, LIST_ALL_AREAS_URL } from "@/app/constants";
-import { ItemType, MealType } from "@/app/types";
-import { mapFilter, mapMeal, transformResult } from "@/app/utils";
+import { ERRORS, FITLER_MEALS, LIST_ALL_AREAS_URL } from "@/app/constants";
+import { MealType } from "@/app/types";
+import { transformResult } from "@/app/utils";
 import { useEffect, useState } from "react";
 
 export default function Meal() {
@@ -22,7 +22,7 @@ export default function Meal() {
 			})
 			.catch((error) => {
 				console.error(error);
-				setError("There was an error while fetching recipes");
+				setError(ERRORS.BY_COUNTRY);
 			});
 	}, [country]);
 
@@ -35,7 +35,7 @@ export default function Meal() {
 				defaultValue='Mexico'
 			/>
 
-			<MealsList meals={results} />
+			{error ? <ErrorMessage>{error}</ErrorMessage> : <MealsList meals={results} />}
 		</>
 	);
 }

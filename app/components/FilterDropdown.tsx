@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ItemType } from "../types";
 import { Loader } from "./Loader";
 import { mapFilter } from "@/app/utils";
+import { ERRORS } from "../constants";
 
 export const FilterDropdown = ({
 	title,
@@ -25,7 +26,7 @@ export const FilterDropdown = ({
 			)
 			.catch((error) => {
 				console.error(error);
-				setError("There was an error while fetching categories");
+				setError(ERRORS.CATEGORIES_LIST);
 				setItems([]);
 			});
 	}, []);

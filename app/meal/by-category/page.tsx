@@ -1,10 +1,10 @@
 "use client";
+import { ErrorMessage } from "@/app/components/ErrorMessage";
 import { FilterDropdown } from "@/app/components/FilterDropdown";
-import { MealSearchItem } from "@/app/components/MealSearchItem";
 import { MealsList } from "@/app/components/MealsList";
-import { FITLER_MEALS, LIST_ALL_CATEGORIES_URL } from "@/app/constants";
+import { ERRORS, FITLER_MEALS, LIST_ALL_CATEGORIES_URL } from "@/app/constants";
 import { MealType } from "@/app/types";
-import { mapMeal, transformResult } from "@/app/utils";
+import { transformResult } from "@/app/utils";
 import { useEffect, useState } from "react";
 
 export default function Meal() {
@@ -21,7 +21,7 @@ export default function Meal() {
 			})
 			.catch((error) => {
 				console.error(error);
-				setError("There was an error while fetching categories");
+				setError(ERRORS.BY_CAEGORY);
 			});
 	}, [category]);
 
@@ -34,7 +34,7 @@ export default function Meal() {
 				setSelected={setCategory}
 			/>
 
-			<MealsList meals={results} />
+			{error ? <ErrorMessage>{error}</ErrorMessage> : <MealsList meals={results} />}
 		</>
 	);
 }

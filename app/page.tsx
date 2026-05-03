@@ -1,16 +1,15 @@
 "use client";
 import { RandomMeal } from "./components/RandomMeal";
-import { FilterDropdown } from "./components/FilterDropdown";
-import { useEffect, useState } from "react";
-import { ItemType, MealType } from "./types";
-import { FITLER_MEALS, LIST_ALL_CATEGORIES_URL, SEARCH_MEAL_URL } from "./constants";
-import { mapFilter, mapMeal, transformResult } from "./utils";
-import { MealSearchItem } from "./components/MealSearchItem";
+import { useState } from "react";
+import { MealType } from "./types";
+import { ERRORS, SEARCH_MEAL_URL } from "./constants";
+import { transformResult } from "./utils";
 import { MealsList } from "./components/MealsList";
+import { ErrorMessage } from "./components/ErrorMessage";
 
 export default function Home() {
 	const [search, setSearch] = useState<string | null>(null);
-	const [results, setResults] = useState<MealType[]>([]);
+	const [results, setResults] = useState<MealType[] | null>(null);
 	const [error, setError] = useState<string | null>(null);
 
 	const searchByName = () => {
@@ -22,7 +21,7 @@ export default function Home() {
 			})
 			.catch((error) => {
 				console.error(error);
-				setError("There was an error while fetching meal");
+				setError(ERRORS.MEAL);
 				setResults([]);
 			});
 	};
@@ -40,7 +39,11 @@ export default function Home() {
 					<button onClick={searchByName}>Search</button>
 				</div>
 
-				<MealsList meals={results} />
+				{error ? (
+					<ErrorMessage>{error}</ErrorMessage>
+				) : (
+					<MealsList meals={results as MealType[]} />
+				)}
 			</div>
 			<div className='w-1/3 p-4'>
 				<RandomMeal />

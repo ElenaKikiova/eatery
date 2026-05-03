@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { RANDOM_MEAL_URL } from "../constants";
+import { ERRORS, RANDOM_MEAL_URL } from "../constants";
 import { mapMeal } from "../utils";
 import { MealType } from "../types";
 import { Loader } from "./Loader";
 import { MealDisplay } from "./MealDisplay";
+import { ErrorMessage } from "./ErrorMessage";
 
 export const RandomMeal = ({ isRandomMealPage = false }: { isRandomMealPage?: boolean }) => {
 	const [randomMeal, setRandomMeal] = useState<MealType | null>(null);
@@ -14,7 +15,7 @@ export const RandomMeal = ({ isRandomMealPage = false }: { isRandomMealPage?: bo
 			.then(({ meals }) => setRandomMeal(mapMeal(meals[0])))
 			.catch((error) => {
 				console.error(error);
-				setError("There was an error while fetching random meal");
+				setError(ERRORS.RANDOM_MEAL);
 				setRandomMeal(null);
 			});
 	}, []);
@@ -22,8 +23,9 @@ export const RandomMeal = ({ isRandomMealPage = false }: { isRandomMealPage?: bo
 	return (
 		<>
 			<h2 className='text-2xl my-4 block'>Random meal proposition:</h2>
-			{randomMeal === null ? (
-				<Loader />
+
+			{error ? (
+				<ErrorMessage>{error}</ErrorMessage>
 			) : (
 				<MealDisplay meal={randomMeal} fullDisplay={isRandomMealPage} />
 			)}
