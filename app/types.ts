@@ -42,3 +42,11 @@ export type ItemType = {
 };
 
 export type FilterSelection = Record<string, string>;
+
+export type InputsType = {
+	name: string;
+	thumbnail: string;
+	recipe: string;
+	tags: string;
+	ingredientsAndMeasures: IngredientsAndMeasures[];
+};

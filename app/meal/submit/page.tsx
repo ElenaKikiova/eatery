@@ -1,47 +1,38 @@
 "use client";
 
 import { Button } from "@/app/components/Button";
-import { ErrorMessage } from "@/app/components/ErrorMessage";
 import { FilterDropdown } from "@/app/components/FilterDropdown";
 import { IngredientList } from "@/app/components/IngredientsList";
 import { Input } from "@/app/components/Input";
 import { MealDisplay } from "@/app/components/MealDisplay";
-import {
-	LIST_ALL_AREAS_URL,
-	LIST_ALL_CATEGORIES_URL,
-	VALIDATION_ERRORS,
-	VALIDATORS,
-} from "@/app/constants";
-import { IngredientsAndMeasures, MealType } from "@/app/types";
-import { createEmptyIngredientsRow } from "@/app/utils";
+import { LIST_ALL_AREAS_URL, LIST_ALL_CATEGORIES_URL } from "@/app/constants";
+import { InputsType, MealType } from "@/app/types";
+
 import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { formFields } from "./formFields";
 
 export default function Submit() {
-	const [name, setName] = useState<string | null>(null);
-	const [thumbnailUrl, setThumbnailURL] = useState<string | null>(null);
-	const [category, setCategory] = useState<string | null>("Chicken");
-	const [country, setCountry] = useState<string | null>("Mexico");
-	const [recipe, setRecipe] = useState<string | null>(null);
-	const [tags, setTags] = useState<string | null>(null);
-	const [ingredients, setIngredients] = useState<IngredientsAndMeasures[]>([
-		createEmptyIngredientsRow(0),
-		createEmptyIngredientsRow(1),
-	]);
-	const [newMeal, setNewMeal] = useState<MealType | null>(null);
-	const [error, setError] = useState<string | null>(null);
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<InputsType>();
 
-	const submit = () => {
+	const [category, setCategory] = useState<string>("Chicken");
+	const [country, setCountry] = useState<string>("Mexico");
+	const [newMeal, setNewMeal] = useState<MealType | null>(null);
+
+	const onSubmit: SubmitHandler<InputsType> = (data) => {
+		console.log(data);
+
 		const recipeObj = {
-			id: "1",
-			thumbnail: thumbnailUrl,
-			name,
+			...data,
+			id: "0",
 			category,
 			country,
-			recipe,
 			source: "User",
 			youtube: "",
-			tags,
-			ingredientsAndMeasures: ingredients,
 		};
 		setNewMeal(recipeObj);
 		console.log(recipeObj);
@@ -55,22 +46,25 @@ export default function Submit() {
 					<MealDisplay meal={newMeal} fullDisplay />
 				</div>
 			) : (
-				<div className='flex gap-3 flex-col'>
+				<form onSubmit={handleSubmit(onSubmit)} className='flex gap-3 flex-col'>
 					<Input
 						id='name'
 						label='Name:'
-						onChange={setName}
-						validatorRegex={VALIDATORS.NAME}
-						validationError={VALIDATION_ERRORS.NAME}
+						{...register("name", { ...formFields.name })}
+						error={errors.name}
 					/>
 					<Input
-						id='thumbnailURL'
+						id='thumbnail'
 						label='Thumbnail URL:'
-						onChange={setThumbnailURL}
-						validatorRegex={VALIDATORS.URL}
-						validationError={VALIDATION_ERRORS.URL}
+						{...register("thumbnail", { ...formFields.thumbnail })}
+						error={errors.thumbnail}
 					/>
-					<Input id='tags' label='Tags' onChange={setTags} />
+					<Input
+						id='tags'
+						label='Tags'
+						{...register("tags", { ...formFields.tags })}
+						error={errors.tags}
+					/>
 					<FilterDropdown
 						label='Category:'
 						id='Category'
@@ -85,17 +79,18 @@ export default function Submit() {
 						setSelected={setCountry}
 						defaultValue='Mexico'
 					/>
-					<IngredientList ingredients={ingredients} setIngredients={setIngredients} />
+					<IngredientList register={register} />
 
 					<Input
 						multiline
 						id='recipe'
 						label='Recipe:'
 						placeholder='Mix milk, oil and egg together...'
-						onChange={setRecipe}
+						{...register("recipe", { ...formFields.recipe })}
+						error={errors.recipe}
 					/>
-					<Button onClick={submit}>Submit</Button>
-				</div>
+					<Button>Submit</Button>
+				</form>
 			)}
 		</div>
 	);

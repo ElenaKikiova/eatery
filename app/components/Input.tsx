@@ -1,49 +1,33 @@
-import { useState } from "react";
-import { VALIDATION_ERRORS } from "../constants";
+import { FieldError } from "react-hook-form";
 
 export const Input = ({
 	id,
 	label,
 	placeholder,
 	multiline = false,
-	onChange,
-	validatorRegex,
-	validationError,
+	onValueChange,
+	error,
+	...rest
 }: {
 	id: string;
 	label: string;
 	placeholder?: string;
 	multiline?: boolean;
-	onChange?: (value: string) => void;
-	validatorRegex?: RegExp;
-	validationError?: string;
+	error?: FieldError;
+	onValueChange?: (value: string) => void;
 }) => {
-	const [value, setValue] = useState<string>("");
-	const [error, setError] = useState<string>("");
-
-	const onValueChange = (value: string) => {
-		if (onChange) onChange(value);
-		if (validatorRegex) setValue(value);
-	};
-
-	const onBlur = () => {
-		const test = validatorRegex?.test(value);
-		console.log(test);
-		setError(test ? "" : validationError ?? VALIDATION_ERRORS.GENERIC);
-	};
-
 	const props = {
 		placeholder,
 		id: `input-${id}`,
-		onChange: (e: any) => onValueChange(e.target.value),
+		onChange: (e: any) => (onValueChange ? onValueChange(e.target.value) : undefined),
 		className: "py-1 px-2 border border-[var(--grey)]",
-		onBlur: validatorRegex ? onBlur : undefined,
+		...rest,
 	};
 	return (
 		<div className={`flex gap-3 ${multiline ? "flex-col" : "items-center"}`}>
 			<label htmlFor={`input-${id}`}>{label}</label>
 			{multiline ? <textarea {...props} /> : <input {...props}></input>}
-			{error && <p className='text-[var(--red)]'>{error}</p>}
+			{error && <p className='text-[var(--red)]'>{error.message}</p>}
 		</div>
 	);
 };

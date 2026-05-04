@@ -23,7 +23,7 @@ export const VALIDATORS = {
 };
 
 export const VALIDATION_ERRORS = {
-	GENERIC: "Invalid format",
+	REQUIRED: "This field is required",
 	NAME: "Name should be at least 3 characters long",
 	URL: "Enter a valid url",
 };

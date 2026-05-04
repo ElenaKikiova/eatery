@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { Button } from "./Button";
 import { Input } from "./Input";
-import { IngredientsAndMeasures } from "../types";
+import { IngredientsAndMeasures, InputsType } from "../types";
 import { createEmptyIngredientsRow } from "../utils";
+import { useFieldArray, useForm } from "react-hook-form";
+import { formFields } from "../meal/submit/formFields";
 
-export const IngredientList = ({
-	ingredients,
-	setIngredients,
-}: {
-	ingredients: IngredientsAndMeasures[];
-	setIngredients: React.Dispatch<React.SetStateAction<IngredientsAndMeasures[]>>;
-}) => {
+export const IngredientList = ({ register }: { register: any }) => {
+	const [ingredients, setIngredients] = useState<IngredientsAndMeasures[]>([
+		createEmptyIngredientsRow(0),
+		createEmptyIngredientsRow(1),
+	]);
 	const [lastId, setLastId] = useState<number>(2);
 
 	const addIngredientRow = () => {
@@ -24,16 +24,6 @@ export const IngredientList = ({
 		);
 	};
 
-	const updateIngredientList = (id: number, key: keyof IngredientsAndMeasures, value: string) => {
-		setIngredients((prev) =>
-			prev.map((ingredient) =>
-				ingredient.id === id ? { ...ingredient, [key]: value } : ingredient
-			)
-		);
-	};
-
-	console.log(ingredients);
-
 	return (
 		<div>
 			{ingredients.map(({ id }: IngredientsAndMeasures, index) => (
@@ -43,13 +33,16 @@ export const IngredientList = ({
 						id={`ingredient-${id}`}
 						label='Ingredient:'
 						placeholder='200ml Milk, 2 eggs...'
-						onChange={(value) => updateIngredientList(id, "ingredient", value)}
-					/>{" "}
+						{...register(`ingredientsAndMeasures.${index}.ingredient`, {
+							...formFields.ingredients,
+						})}
+					/>
+
 					<Input
 						id={`measure-${id}`}
 						label='Measure:'
 						placeholder='200ml Milk, 2 eggs...'
-						onChange={(value) => updateIngredientList(id, "measure", value)}
+						{...register(`ingredientsAndMeasures.${index}.measure`)}
 					/>
 					<Button onClick={() => removeIngredientRow(id)}>Remove</Button>
 				</div>

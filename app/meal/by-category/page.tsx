@@ -8,7 +8,7 @@ import { transformResult } from "@/app/utils";
 import { useEffect, useState } from "react";
 
 export default function Meal() {
-	const [category, setCategory] = useState<string | null>("Chicken");
+	const [category, setCategory] = useState<string>("Chicken");
 	const [results, setResults] = useState<MealType[]>([]);
 	const [error, setError] = useState<string | null>(null);
 

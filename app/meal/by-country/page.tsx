@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 export default function Meal() {
 	const [results, setResults] = useState<MealType[]>([]);
-	const [country, setCountry] = useState<string | null>("Mexico");
+	const [country, setCountry] = useState<string>("Mexico");
 	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {

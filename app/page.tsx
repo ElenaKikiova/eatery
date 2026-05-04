@@ -36,7 +36,7 @@ export default function Home() {
 						id='search'
 						label='Search by name:'
 						placeholder='Pasta...'
-						onChange={setSearch}
+						onValueChange={setSearch}
 					/>
 					<Button onClick={searchByName}>Search</Button>
 				</div>
