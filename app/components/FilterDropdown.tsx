@@ -5,12 +5,14 @@ import { mapFilter } from "@/app/utils";
 import { ERRORS } from "../constants";
 
 export const FilterDropdown = ({
-	title,
+	id,
+	label,
 	fetchUrl,
 	defaultValue,
 	setSelected,
 }: {
-	title: string;
+	id: string;
+	label: string;
 	fetchUrl: string;
 	defaultValue: string;
 	setSelected: (value: string) => void;
@@ -22,7 +24,7 @@ export const FilterDropdown = ({
 		fetch(fetchUrl)
 			.then((res) => res.json())
 			.then(({ meals }) =>
-				setItems(meals.map((item: ItemType) => mapFilter(item, `str${title}`)))
+				setItems(meals.map((item: ItemType) => mapFilter(item, `str${id}`)))
 			)
 			.catch((error) => {
 				console.error(error);
@@ -32,16 +34,17 @@ export const FilterDropdown = ({
 	}, []);
 
 	return (
-		<div className='flex gap-3'>
-			<label htmlFor={`dropdown-${title}`}>{title}</label>
+		<div className='flex gap-3 my-2 items-center'>
+			<label htmlFor={`dropdown-${id}`}>{label}</label>
 
 			{items.length === 0 ? (
 				<Loader />
 			) : (
 				<select
-					id={`dropdown-${title}`}
+					id={`dropdown-${id}`}
 					onChange={(e) => setSelected(e.target.value)}
 					defaultValue={defaultValue}
+					className='py-2 px-2 border border-[var(--grey)]'
 				>
 					{items.map((item: ItemType) => (
 						<option key={item.name}>{item.name}</option>

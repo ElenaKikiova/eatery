@@ -6,6 +6,8 @@ import { ERRORS, SEARCH_MEAL_URL } from "./constants";
 import { transformResult } from "./utils";
 import { MealsList } from "./components/MealsList";
 import { ErrorMessage } from "./components/ErrorMessage";
+import { Input } from "./components/Input";
+import { Button } from "./components/Button";
 
 export default function Home() {
 	const [search, setSearch] = useState<string | null>(null);
@@ -30,13 +32,13 @@ export default function Home() {
 		<div className='flex gap-5 w-full'>
 			<div className='w-2/3'>
 				<div className='flex gap-3'>
-					<label htmlFor='search'>Search by name:</label>
-					<input
-						placeholder='Pasta...'
+					<Input
 						id='search'
-						onChange={(e) => setSearch(e.target.value)}
-					></input>
-					<button onClick={searchByName}>Search</button>
+						label='Search by name:'
+						placeholder='Pasta...'
+						onChange={setSearch}
+					/>
+					<Button onClick={searchByName}>Search</Button>
 				</div>
 
 				{error ? (

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MealType } from "../types";
 import { Loader } from "./Loader";
+import { Button } from "./Button";
 
 export const MealDisplay = ({
 	meal,
@@ -42,9 +43,7 @@ export const MealDisplay = ({
 			{!fullDisplay && (
 				<div className='flex flex-col justify-end absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-b from-transparent to-[var(--background)]'>
 					<Link href={`/meal/by-id/${id}`} className='text-center'>
-						<button className='cursor-pointer px-4 py-2 bg-[var(--background)] rounded border border-[var(--grey)]'>
-							Click to read whole recipe
-						</button>
+						<Button>Click to read whole recipe</Button>
 					</Link>
 				</div>
 			)}

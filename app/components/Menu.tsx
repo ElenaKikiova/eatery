@@ -22,6 +22,9 @@ export default function Menu() {
 				<Link href='/meal/by-country' className='px-2 flex items-end justify-center'>
 					By country
 				</Link>
+				<Link href='/meal/submit' className='px-2 flex items-end justify-center'>
+					Submit a recipe!
+				</Link>
 			</div>
 		</nav>
 	);

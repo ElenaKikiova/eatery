@@ -28,7 +28,8 @@ export default function Meal() {
 	return (
 		<>
 			<FilterDropdown
-				title='Category'
+				label='Category:'
+				id='Category'
 				defaultValue='Chicken'
 				fetchUrl={LIST_ALL_CATEGORIES_URL}
 				setSelected={setCategory}

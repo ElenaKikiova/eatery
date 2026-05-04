@@ -29,7 +29,8 @@ export default function Meal() {
 	return (
 		<>
 			<FilterDropdown
-				title='Country'
+				label='Country:'
+				id='Country'
 				fetchUrl={LIST_ALL_AREAS_URL}
 				setSelected={setCountry}
 				defaultValue='Mexico'
