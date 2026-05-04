@@ -16,3 +16,14 @@ export const ERRORS = {
 	INVALID_ID: "Please enter a valid id",
 	NOT_FOUND: "Not found",
 };
+
+export const VALIDATORS = {
+	NAME: /([A-Za-z0-9]){3,}\w+/,
+	URL: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+};
+
+export const VALIDATION_ERRORS = {
+	GENERIC: "Invalid format",
+	NAME: "Name should be at least 3 characters long",
+	URL: "Enter a valid url",
+};

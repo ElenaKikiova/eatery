@@ -23,7 +23,7 @@ export const mapMeal = (meal: RawMealType): MealType => {
 			if (key.includes(type)) {
 				const number = key.replace(`str${type}`, "");
 				if (!ingredientsMap[number]) {
-					ingredientsMap[number] = { ingredient: "", measure: "" };
+					ingredientsMap[number] = { id: 0, ingredient: "", measure: "" };
 				}
 				ingredientsMap[number][type.toLowerCase() as keyof IngredientsAndMeasures] =
 					trimmedValue;
@@ -46,3 +46,8 @@ export const mapMeal = (meal: RawMealType): MealType => {
 		tags: meal.strTags,
 	};
 };
+export const createEmptyIngredientsRow = (id: number) => ({
+	id,
+	ingredient: "",
+	measure: "",
+});

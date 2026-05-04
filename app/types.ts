@@ -19,6 +19,7 @@ export type RawMealType = {
 };
 
 export type IngredientsAndMeasures = {
+	id: number;
 	ingredient: string;
 	measure: string;
 };
