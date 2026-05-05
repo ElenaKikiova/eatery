@@ -11,10 +11,12 @@ import { InputsType, MealType } from "@/app/types";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { formFields } from "./formFields";
+import { Tags } from "@/app/components/Tags";
 
 export default function Submit() {
 	const {
 		register,
+		unregister,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<InputsType>();
@@ -39,14 +41,14 @@ export default function Submit() {
 	};
 
 	return (
-		<div className='flex gap-3 flex-col'>
+		<div>
 			{newMeal ? (
 				<div className=''>
 					Your recipe has been submitted - waiting for admin approval:
 					<MealDisplay meal={newMeal} fullDisplay />
 				</div>
 			) : (
-				<form onSubmit={handleSubmit(onSubmit)} className='flex gap-3 flex-col'>
+				<form onSubmit={handleSubmit(onSubmit)} className='flex gap-5 flex-col'>
 					<Input
 						id='name'
 						label='Name:'
@@ -59,12 +61,7 @@ export default function Submit() {
 						{...register("thumbnail", { ...formFields.thumbnail })}
 						error={errors.thumbnail}
 					/>
-					<Input
-						id='tags'
-						label='Tags'
-						{...register("tags", { ...formFields.tags })}
-						error={errors.tags}
-					/>
+					<Tags />
 					<FilterDropdown
 						label='Category:'
 						id='Category'
@@ -79,7 +76,7 @@ export default function Submit() {
 						setSelected={setCountry}
 						defaultValue='Mexico'
 					/>
-					<IngredientList register={register} />
+					<IngredientList register={register} unregister={unregister} />
 
 					<Input
 						multiline
@@ -89,7 +86,7 @@ export default function Submit() {
 						{...register("recipe", { ...formFields.recipe })}
 						error={errors.recipe}
 					/>
-					<Button>Submit</Button>
+					<Button type='submit'>Submit</Button>
 				</form>
 			)}
 		</div>

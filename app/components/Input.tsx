@@ -6,6 +6,7 @@ export const Input = ({
 	placeholder,
 	multiline = false,
 	onValueChange,
+	value,
 	error,
 	...rest
 }: {
@@ -13,6 +14,7 @@ export const Input = ({
 	label: string;
 	placeholder?: string;
 	multiline?: boolean;
+	value?: string;
 	error?: FieldError;
 	onValueChange?: (value: string) => void;
 }) => {
@@ -21,6 +23,7 @@ export const Input = ({
 		id: `input-${id}`,
 		onChange: (e: any) => (onValueChange ? onValueChange(e.target.value) : undefined),
 		className: "py-1 px-2 border border-[var(--grey)]",
+		value,
 		...rest,
 	};
 	return (

@@ -3,10 +3,16 @@ import { Button } from "./Button";
 import { Input } from "./Input";
 import { IngredientsAndMeasures, InputsType } from "../types";
 import { createEmptyIngredientsRow } from "../utils";
-import { useFieldArray, useForm } from "react-hook-form";
 import { formFields } from "../meal/submit/formFields";
+import { UseFormRegister, UseFormUnregister } from "react-hook-form";
 
-export const IngredientList = ({ register }: { register: any }) => {
+export const IngredientList = ({
+	register,
+	unregister,
+}: {
+	register: UseFormRegister<InputsType>;
+	unregister: UseFormUnregister<InputsType>;
+}) => {
 	const [ingredients, setIngredients] = useState<IngredientsAndMeasures[]>([
 		createEmptyIngredientsRow(0),
 		createEmptyIngredientsRow(1),
@@ -22,6 +28,7 @@ export const IngredientList = ({ register }: { register: any }) => {
 		setIngredients((prev) =>
 			prev.filter((ingredient: IngredientsAndMeasures) => ingredient.id !== id)
 		);
+		unregister(`ingredientsAndMeasures.${id}`);
 	};
 
 	return (
@@ -33,7 +40,7 @@ export const IngredientList = ({ register }: { register: any }) => {
 						id={`ingredient-${id}`}
 						label='Ingredient:'
 						placeholder='200ml Milk, 2 eggs...'
-						{...register(`ingredientsAndMeasures.${index}.ingredient`, {
+						{...register(`ingredientsAndMeasures.${id}.ingredient`, {
 							...formFields.ingredients,
 						})}
 					/>
@@ -42,7 +49,7 @@ export const IngredientList = ({ register }: { register: any }) => {
 						id={`measure-${id}`}
 						label='Measure:'
 						placeholder='200ml Milk, 2 eggs...'
-						{...register(`ingredientsAndMeasures.${index}.measure`)}
+						{...register(`ingredientsAndMeasures.${id}.measure`)}
 					/>
 					<Button onClick={() => removeIngredientRow(id)}>Remove</Button>
 				</div>
