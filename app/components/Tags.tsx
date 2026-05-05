@@ -4,7 +4,7 @@ import { Button } from "./Button";
 import { ErrorMessage } from "./ErrorMessage";
 import { IconButton } from "./IconButton";
 
-export const Tags = () => {
+export const Tags = ({ onChange }: { onChange: (tags: string[]) => void }) => {
 	const [tags, setTags] = useState<string[]>([]);
 	const [value, setValue] = useState<string>("");
 	const [error, setError] = useState<string>("");
@@ -17,24 +17,28 @@ export const Tags = () => {
 		if (tags.indexOf(value) > -1) setError("This tag already exists");
 		else {
 			setError("");
-			setTags((prev) => [...prev, value]);
+			const newTags = [...tags, value];
+			setTags(newTags);
+			onChange(newTags);
 			setValue("");
 		}
 	};
 
 	const removeTag = (tagName: string) => {
-		setTags((prev) => prev.filter((tag) => tag != tagName));
+		const newTags = tags.filter((tag) => tag != tagName);
+		setTags(newTags);
+		onChange(newTags);
 	};
 
 	return (
-		<>
+		<div>
 			<div className='flex gap-2'>
-				<Input id='tagsInput' label='Tag: ' onValueChange={addTag} value={value} />
+				<Input id='tagsInput' label='Tags: ' onValueChange={addTag} value={value} />
 				<Button onClick={onTagAdd}>Add</Button>
 			</div>
 			{error && <ErrorMessage>{error}</ErrorMessage>}
 
-			<div className='flex gap-2'>
+			<div className='flex gap-2 py-2'>
 				{tags.map((tag) => (
 					<div
 						className='flex gap-1 border border-[var(--grey)] rounded px-2 items-center'
@@ -45,6 +49,6 @@ export const Tags = () => {
 					</div>
 				))}
 			</div>
-		</>
+		</div>
 	);
 };

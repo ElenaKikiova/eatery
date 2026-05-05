@@ -1,0 +1,50 @@
+{
+  "submitted-recipes": [
+    {
+      "name": "Cake"
+    },
+    {
+      "id": 1,
+      "name": "Cake",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfSUBIsHUDi5GInGBsXeUjqLpaWlqH5OkJBQA-WMJOrQQFAdlT-L1RILAehG18QZ4nAqi3J7ZYDjNeSa1cuGHAqLW2moP5sS3qzR7pf_Mmvw&s=10",
+      "recipe": "mix",
+      "ingredientsAndMeasures": [
+        {
+          "ingredient": "egg",
+          "measure": "2"
+        }
+      ],
+      "category": "Chicken",
+      "country": "Mexico",
+      "tags": "cake",
+      "source": "User",
+      "youtube": ""
+    },
+    {
+      "id": 2
+    },
+    {
+      "name": "Cake",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfSUBIsHUDi5GInGBsXeUjqLpaWlqH5OkJBQA-WMJOrQQFAdlT-L1RILAehG18QZ4nAqi3J7ZYDjNeSa1cuGHAqLW2moP5sS3qzR7pf_Mmvw&s=10",
+      "recipe": "mix",
+      "ingredientsAndMeasures": [
+        {
+          "ingredient": "e",
+          "measure": "2"
+        }
+      ],
+      "category": "Chicken",
+      "country": "Mexico",
+      "tags": "cakeee",
+      "source": "User",
+      "youtube": "",
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    }
+  ]
+}

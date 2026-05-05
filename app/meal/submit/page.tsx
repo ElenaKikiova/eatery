@@ -5,7 +5,7 @@ import { FilterDropdown } from "@/app/components/FilterDropdown";
 import { IngredientList } from "@/app/components/IngredientsList";
 import { Input } from "@/app/components/Input";
 import { MealDisplay } from "@/app/components/MealDisplay";
-import { LIST_ALL_AREAS_URL, LIST_ALL_CATEGORIES_URL } from "@/app/constants";
+import { LIST_ALL_AREAS_URL, LIST_ALL_CATEGORIES_URL, LOCAL_DB } from "@/app/constants";
 import { InputsType, MealType } from "@/app/types";
 
 import { useState } from "react";
@@ -23,6 +23,7 @@ export default function Submit() {
 
 	const [category, setCategory] = useState<string>("Chicken");
 	const [country, setCountry] = useState<string>("Mexico");
+	const [tags, setTags] = useState<string[]>([]);
 	const [newMeal, setNewMeal] = useState<MealType | null>(null);
 
 	const onSubmit: SubmitHandler<InputsType> = (data) => {
@@ -30,12 +31,15 @@ export default function Submit() {
 
 		const recipeObj = {
 			...data,
-			id: "0",
 			category,
 			country,
+			tags: tags.join(","),
 			source: "User",
 			youtube: "",
 		};
+
+		fetch(LOCAL_DB, { method: "POST", body: JSON.stringify({ recipeObj }) });
+
 		setNewMeal(recipeObj);
 		console.log(recipeObj);
 	};
@@ -43,49 +47,63 @@ export default function Submit() {
 	return (
 		<div>
 			{newMeal ? (
-				<div className=''>
-					Your recipe has been submitted - waiting for admin approval:
+				<div>
+					<p className='py-3'>
+						Your recipe has been submitted - waiting for admin approval.
+					</p>
 					<MealDisplay meal={newMeal} fullDisplay />
 				</div>
 			) : (
 				<form onSubmit={handleSubmit(onSubmit)} className='flex gap-5 flex-col'>
-					<Input
-						id='name'
-						label='Name:'
-						{...register("name", { ...formFields.name })}
-						error={errors.name}
-					/>
-					<Input
-						id='thumbnail'
-						label='Thumbnail URL:'
-						{...register("thumbnail", { ...formFields.thumbnail })}
-						error={errors.thumbnail}
-					/>
-					<Tags />
-					<FilterDropdown
-						label='Category:'
-						id='Category'
-						fetchUrl={LIST_ALL_CATEGORIES_URL}
-						setSelected={setCategory}
-						defaultValue='Chicken'
-					/>
-					<FilterDropdown
-						label='Country:'
-						id='Country'
-						fetchUrl={LIST_ALL_AREAS_URL}
-						setSelected={setCountry}
-						defaultValue='Mexico'
-					/>
-					<IngredientList register={register} unregister={unregister} />
+					<div className='grid grid-cols-1 md:grid-cols-2 gap-3'>
+						<div className='flex flex-col gap-4'>
+							<Input
+								id='name'
+								label='Name:'
+								{...register("name", { ...formFields.name })}
+								error={errors.name}
+							/>
+							<Input
+								id='thumbnail'
+								label='Thumbnail URL:'
+								{...register("thumbnail", { ...formFields.thumbnail })}
+								error={errors.thumbnail}
+							/>
+						</div>
+						<div className='flex flex-col gap-4'>
+							<FilterDropdown
+								label='Category:'
+								id='Category'
+								fetchUrl={LIST_ALL_CATEGORIES_URL}
+								setSelected={setCategory}
+								defaultValue='Chicken'
+							/>
+							<FilterDropdown
+								label='Country:'
+								id='Country'
+								fetchUrl={LIST_ALL_AREAS_URL}
+								setSelected={setCountry}
+								defaultValue='Mexico'
+							/>
+						</div>
+					</div>
+					<div className='flex flex-col gap-5'>
+						<Tags onChange={setTags} />
+						<IngredientList
+							register={register}
+							unregister={unregister}
+							errors={errors}
+						/>
 
-					<Input
-						multiline
-						id='recipe'
-						label='Recipe:'
-						placeholder='Mix milk, oil and egg together...'
-						{...register("recipe", { ...formFields.recipe })}
-						error={errors.recipe}
-					/>
+						<Input
+							multiline
+							id='recipe'
+							label='Recipe:'
+							placeholder='Mix milk, oil and egg together...'
+							{...register("recipe", { ...formFields.recipe })}
+							error={errors.recipe}
+						/>
+					</div>
 					<Button type='submit'>Submit</Button>
 				</form>
 			)}

@@ -5,6 +5,7 @@ export const RANDOM_MEAL_URL = `${MEAL_DB}random.php`;
 export const SEARCH_MEAL_URL = `${MEAL_DB}search.php`;
 export const GET_MEAL_BY_ID_URL = `${MEAL_DB}lookup.php?i=`;
 export const FITLER_MEALS = `${MEAL_DB}filter.php`;
+export const LOCAL_DB = `http://localhost:3001/submitted-recipes`;
 
 export const ERRORS = {
 	MEAL: "There was an error while fetching meals",
@@ -20,10 +21,14 @@ export const ERRORS = {
 export const VALIDATORS = {
 	NAME: /([A-Za-z0-9]){3,}\w+/,
 	URL: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+	INGREDIENT_NAME: /([A-Za-z0-9]){2,}\w+/,
+	INGREDIENT_MEASURE: /([A-Za-z0-9]){1,}\w+/,
 };
 
 export const VALIDATION_ERRORS = {
 	REQUIRED: "This field is required",
 	NAME: "Name should be at least 3 characters long",
 	URL: "Enter a valid url",
+	INGREDIENT_NAME: "Ingredient should be at least 2 characters",
+	INGREDIENT_MEASURE: "Ingredient measure should be at least 1 character",
 };

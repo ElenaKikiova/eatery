@@ -21,7 +21,18 @@ export const formFields = {
 	recipe: {
 		required: VALIDATION_ERRORS.REQUIRED,
 	},
-	ingredients: {
+	ingredientName: {
 		required: VALIDATION_ERRORS.REQUIRED,
+		pattern: {
+			value: VALIDATORS.INGREDIENT_NAME,
+			message: VALIDATION_ERRORS.INGREDIENT_NAME,
+		},
+	},
+	ingredientMeasure: {
+		required: VALIDATION_ERRORS.REQUIRED,
+		pattern: {
+			value: VALIDATORS.INGREDIENT_MEASURE,
+			message: VALIDATION_ERRORS.INGREDIENT_MEASURE,
+		},
 	},
 };

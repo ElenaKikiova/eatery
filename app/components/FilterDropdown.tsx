@@ -34,7 +34,7 @@ export const FilterDropdown = ({
 	}, []);
 
 	return (
-		<div className='flex gap-3 my-2 items-center'>
+		<div className='flex gap-3 items-center'>
 			<label htmlFor={`dropdown-${id}`}>{label}</label>
 
 			{items.length === 0 ? (
