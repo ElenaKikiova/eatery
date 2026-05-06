@@ -16,13 +16,14 @@ export const ERRORS = {
 	BY_COUNTRY: "There was an error while fetching recipes for the selected country",
 	INVALID_ID: "Please enter a valid id",
 	NOT_FOUND: "Not found",
+	SAVE_RECIPE: "An error occured while saving your recipe. Please try again later",
 };
 
 export const VALIDATORS = {
 	NAME: /([A-Za-z0-9]){3,}\w+/,
 	URL: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
 	INGREDIENT_NAME: /([A-Za-z0-9]){2,}\w+/,
-	INGREDIENT_MEASURE: /([A-Za-z0-9]){1,}\w+/,
+	INGREDIENT_MEASURE: /([A-Za-z0-9]){1,}/,
 };
 
 export const VALIDATION_ERRORS = {

@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
 
-export const ErrorMessage = ({ children, padding }: { children: ReactNode; padding?: string }) => (
+type ErrorMessageType = { children: ReactNode; padding?: string };
+
+export const ErrorMessage = ({ children, padding }: ErrorMessageType) => (
 	<p className={`text-[var(--red)] ${padding}`}>{children}</p>
 );

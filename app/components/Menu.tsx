@@ -1,9 +1,4 @@
 "use client";
-import { useState } from "react";
-import { SEARCH_MEAL_URL } from "../constants";
-import { MealType } from "../types";
-import { MealSearchItem } from "./MealSearchItem";
-import { mapMeal } from "../utils";
 import Link from "next/link";
 
 export default function Menu() {

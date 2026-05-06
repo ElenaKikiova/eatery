@@ -7,15 +7,13 @@ import { formFields } from "../meal/submit/formFields";
 import { FieldErrors, UseFormRegister, UseFormUnregister } from "react-hook-form";
 import { IconButton } from "./IconButton";
 
-export const IngredientList = ({
-	register,
-	unregister,
-	errors,
-}: {
+type IngredientListType = {
 	register: UseFormRegister<InputsType>;
 	unregister: UseFormUnregister<InputsType>;
 	errors: FieldErrors<InputsType>;
-}) => {
+};
+
+export const IngredientList = ({ register, unregister, errors }: IngredientListType) => {
 	const [error, setError] = useState<string>("");
 	const [ingredients, setIngredients] = useState<IngredientsAndMeasures[]>([
 		createEmptyIngredientsRow(0),

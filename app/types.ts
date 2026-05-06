@@ -24,6 +24,8 @@ export type IngredientsAndMeasures = {
 	measure: string;
 };
 
+export type IngredientAndMeasureKeys = "ingredient" | "measure";
+
 export type MealType = {
 	id: string;
 	name: string;
@@ -37,11 +39,17 @@ export type MealType = {
 	tags: string;
 };
 
-export type ItemType = {
-	name: string;
+export type RawDataKey = "strCategory" | "strCountry";
+
+export type RawDataFilterType = {
+	[key in RawDataKey]: string;
 };
 
 export type FilterSelection = Record<string, string>;
+
+export type FilterItemType = {
+	name: string;
+};
 
 export type InputsType = {
 	name: string;

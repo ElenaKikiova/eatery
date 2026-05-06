@@ -1,11 +1,18 @@
-import { IngredientsAndMeasures, MealType, RawMealType } from "./types";
+import {
+	IngredientAndMeasureKeys,
+	IngredientsAndMeasures,
+	MealType,
+	RawDataFilterType,
+	RawMealType,
+	RawDataKey,
+} from "./types";
 
 export const transformResult = (meals: RawMealType[] | null) => {
 	if (meals && meals.length > 0) return meals.map(mapMeal);
 	else return [];
 };
 
-export const mapFilter = (data: any, key: string) => ({
+export const mapFilter = (data: RawDataFilterType, key: RawDataKey) => ({
 	name: data[key],
 });
 
@@ -23,9 +30,13 @@ export const mapMeal = (meal: RawMealType): MealType => {
 			if (key.includes(type)) {
 				const number = key.replace(`str${type}`, "");
 				if (!ingredientsMap[number]) {
-					ingredientsMap[number] = { id: 0, ingredient: "", measure: "" };
+					ingredientsMap[number] = {
+						id: Number(number),
+						ingredient: "",
+						measure: "",
+					} as IngredientsAndMeasures;
 				}
-				ingredientsMap[number][type.toLowerCase() as keyof IngredientsAndMeasures] =
+				ingredientsMap[number][type.toLowerCase() as IngredientAndMeasureKeys] =
 					trimmedValue;
 				break;
 			}

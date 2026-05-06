@@ -5,13 +5,14 @@ import { FilterDropdown } from "@/app/components/FilterDropdown";
 import { IngredientList } from "@/app/components/IngredientsList";
 import { Input } from "@/app/components/Input";
 import { MealDisplay } from "@/app/components/MealDisplay";
-import { LIST_ALL_AREAS_URL, LIST_ALL_CATEGORIES_URL, LOCAL_DB } from "@/app/constants";
+import { ERRORS, LIST_ALL_AREAS_URL, LIST_ALL_CATEGORIES_URL, LOCAL_DB } from "@/app/constants";
 import { InputsType, MealType } from "@/app/types";
 
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { formFields } from "./formFields";
 import { Tags } from "@/app/components/Tags";
+import { ErrorMessage } from "@/app/components/ErrorMessage";
 
 export default function Submit() {
 	const {
@@ -25,6 +26,7 @@ export default function Submit() {
 	const [country, setCountry] = useState<string>("Mexico");
 	const [tags, setTags] = useState<string[]>([]);
 	const [newMeal, setNewMeal] = useState<MealType | null>(null);
+	const [error, setError] = useState<string>("");
 
 	const onSubmit: SubmitHandler<InputsType> = (data) => {
 		console.log(data);
@@ -38,14 +40,28 @@ export default function Submit() {
 			youtube: "",
 		};
 
-		fetch(LOCAL_DB, { method: "POST", body: JSON.stringify({ recipeObj }) });
-
-		setNewMeal(recipeObj);
-		console.log(recipeObj);
+		fetch(LOCAL_DB, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(recipeObj),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setNewMeal(data);
+				console.log(recipeObj);
+				setError("");
+			})
+			.catch((err) => {
+				console.log(err);
+				setError(ERRORS.SAVE_RECIPE);
+			});
 	};
 
 	return (
 		<div>
+			{error && <ErrorMessage>{error}</ErrorMessage>}
 			{newMeal ? (
 				<div>
 					<p className='py-3'>

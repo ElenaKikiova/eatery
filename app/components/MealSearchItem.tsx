@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { MealType } from "../types";
-import { mapMeal } from "../utils";
 
 export const MealSearchItem = ({ meal }: { meal: MealType }) => {
 	const { id, thumbnail, name, category, country } = meal;

@@ -1,6 +1,17 @@
 import { FieldError } from "react-hook-form";
 import { ErrorMessage } from "./ErrorMessage";
 
+type InputType = {
+	id: string;
+	label: string;
+	placeholder?: string;
+	multiline?: boolean;
+	value?: string;
+	error?: FieldError;
+	styles?: string;
+	onValueChange?: (value: string) => void;
+};
+
 export const Input = ({
 	id,
 	label,
@@ -10,25 +21,16 @@ export const Input = ({
 	value,
 	error,
 	...rest
-}: {
-	id: string;
-	label: string;
-	placeholder?: string;
-	multiline?: boolean;
-	value?: string;
-	error?: FieldError;
-	styles?: string;
-	onValueChange?: (value: string) => void;
-}) => {
+}: InputType) => {
 	const props = {
 		placeholder,
 		id: `input-${id}`,
-		onChange: (e: any) => (onValueChange ? onValueChange(e.target.value) : undefined),
+		onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+			onValueChange ? onValueChange(e.target.value) : undefined,
 		className: `py-1 px-2 border border-[var(--grey)]`,
 		value,
 		...rest,
 	};
-	console.log(error);
 	return (
 		<div>
 			<div className={`flex gap-3 ${multiline ? "flex-col" : "items-center"}`}>

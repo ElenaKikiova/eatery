@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { ERRORS, RANDOM_MEAL_URL } from "../constants";
 import { mapMeal } from "../utils";
 import { MealType } from "../types";
-import { Loader } from "./Loader";
 import { MealDisplay } from "./MealDisplay";
 import { ErrorMessage } from "./ErrorMessage";
 

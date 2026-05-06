@@ -3,13 +3,12 @@ import { MealType } from "../types";
 import { Loader } from "./Loader";
 import { Button } from "./Button";
 
-export const MealDisplay = ({
-	meal,
-	fullDisplay = false,
-}: {
+type MealDisplayType = {
 	meal: MealType | null;
 	fullDisplay?: boolean;
-}) => {
+};
+
+export const MealDisplay = ({ meal, fullDisplay = false }: MealDisplayType) => {
 	if (meal === null) return <Loader />;
 
 	const { id, thumbnail, name, category, country, ingredientsAndMeasures, recipe } = meal;

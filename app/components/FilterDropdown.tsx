@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { ItemType } from "../types";
+import { FilterItemType, RawDataFilterType, RawDataKey } from "../types";
 import { Loader } from "./Loader";
 import { mapFilter } from "@/app/utils";
 import { ERRORS } from "../constants";
+import { ErrorMessage } from "./ErrorMessage";
 
 export const FilterDropdown = ({
 	id,
@@ -18,13 +19,17 @@ export const FilterDropdown = ({
 	setSelected: (value: string) => void;
 }) => {
 	const [error, setError] = useState<string | null>(null);
-	const [items, setItems] = useState<ItemType[]>([]);
+	const [items, setItems] = useState<FilterItemType[]>([]);
 
 	useEffect(() => {
 		fetch(fetchUrl)
 			.then((res) => res.json())
 			.then(({ meals }) =>
-				setItems(meals.map((item: ItemType) => mapFilter(item, `str${id}`)))
+				setItems(
+					meals.map((item: RawDataFilterType) =>
+						mapFilter(item, `str${id}` as RawDataKey)
+					)
+				)
 			)
 			.catch((error) => {
 				console.error(error);
@@ -46,11 +51,12 @@ export const FilterDropdown = ({
 					defaultValue={defaultValue}
 					className='py-2 px-2 border border-[var(--grey)]'
 				>
-					{items.map((item: ItemType) => (
+					{items.map((item: FilterItemType) => (
 						<option key={item.name}>{item.name}</option>
 					))}
 				</select>
 			)}
+			{error && <ErrorMessage>{error}</ErrorMessage>}
 		</div>
 	);
 };
