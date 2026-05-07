@@ -58,5 +58,3 @@ export type InputsType = {
 	tags: string;
 	ingredientsAndMeasures: IngredientsAndMeasures[];
 };
-
-export type IconSize = "small" | "big";

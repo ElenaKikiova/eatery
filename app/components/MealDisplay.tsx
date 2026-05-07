@@ -8,9 +8,11 @@ import { redirect } from "next/navigation";
 type MealDisplayType = {
 	meal: MealType | null;
 	fullDisplay?: boolean;
+	onEdit?: (id: string) => void;
+	onDelete?: (id: string) => void;
 };
 
-export const MealDisplay = ({ meal, fullDisplay = false }: MealDisplayType) => {
+export const MealDisplay = ({ meal, fullDisplay = false, onEdit, onDelete }: MealDisplayType) => {
 	if (meal === null) return <Loader />;
 
 	const {
@@ -25,6 +27,8 @@ export const MealDisplay = ({ meal, fullDisplay = false }: MealDisplayType) => {
 		tags,
 	} = meal;
 
+	const goToEdit = (id: string) => console.log(id);
+
 	return (
 		<div
 			className={`relative flex flex-col gap-2 ${
@@ -36,7 +40,15 @@ export const MealDisplay = ({ meal, fullDisplay = false }: MealDisplayType) => {
 					src={thumbnail}
 					className={fullDisplay ? "float-left max-w-[250px] mr-4 mb-2" : ""}
 				/>
-				<p className='text-2xl my-1'>{name}</p>
+				<div className='flex gap-2'>
+					<p className='text-2xl my-1'>{name}</p>
+					{onEdit && onDelete && (
+						<>
+							<IconButton icon='edit' size='medium' onClick={() => onEdit(id)} />
+							<IconButton icon='delete' size='medium' onClick={() => onDelete(id)} />
+						</>
+					)}
+				</div>
 				<p className='font-bold'>Category: {category}</p>
 				<p className='font-bold'>Country: {country}</p>
 				{tags && <p className='font-bold'>Tags: {tags}</p>}

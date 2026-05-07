@@ -15,7 +15,7 @@ export const FilterDropdown = ({
 	id: string;
 	label: string;
 	fetchUrl: string;
-	defaultValue: string;
+	defaultValue?: string;
 	setSelected: (value: string) => void;
 }) => {
 	const [error, setError] = useState<string | null>(null);
@@ -48,7 +48,7 @@ export const FilterDropdown = ({
 				<select
 					id={`dropdown-${id}`}
 					onChange={(e) => setSelected(e.target.value)}
-					defaultValue={defaultValue}
+					defaultValue={defaultValue || items[0].name}
 					className='py-2 px-2 border border-[var(--grey)]'
 				>
 					{items.map((item: FilterItemType) => (

@@ -7,8 +7,10 @@ import { MealType } from "@/app/types";
 import { useEffect, useState } from "react";
 import { ErrorMessage } from "@/app/components/ErrorMessage";
 import { Loader } from "@/app/components/Loader";
+import { useRouter } from "next/navigation";
 
 export default function MyRecipes() {
+	const router = useRouter();
 	const [meals, setMeals] = useState<MealType[] | null>(null);
 	const [error, setError] = useState<string>("");
 
@@ -24,6 +26,11 @@ export default function MyRecipes() {
 			});
 	}, []);
 
+	const onEdit = (id: string) => router.push("/my-recipes/edit/" + id);
+	const onDelete = (id: string) => {
+		console.log(id);
+	};
+
 	return (
 		<>
 			<p className='text-2xl pb-3'>Submitted recipes:</p>
@@ -33,7 +40,12 @@ export default function MyRecipes() {
 					<div className='flex flex-col gap-5'>
 						{meals.map((meal) => (
 							<div className='py-2 border-b border-[var(--grey)]' key={meal.id}>
-								<MealDisplay fullDisplay meal={meal} />
+								<MealDisplay
+									fullDisplay
+									meal={meal}
+									onEdit={onEdit}
+									onDelete={onDelete}
+								/>
 							</div>
 						))}
 					</div>

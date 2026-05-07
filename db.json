@@ -1,58 +1,24 @@
 {
   "submitted-recipes": [
     {
-      "name": "Simple Spelt Bread",
-      "thumbnail": "https://www.occasionallyeggs.com/wp-content/uploads/2020/03/Spelt-Bread-main.jpg",
-      "recipe": "Add the water and honey to a large bowl, or the bowl of your stand mixer. Sprinkle the yeast over top and let it sit for ten minutes. After ten minutes, it should be foamy. If the mixture doesn't foam, discard – you need new yeast.\n60 ml (¼ cup) warm water,2 ¼ teaspoons yeast,1 tablespoon honey or maple syrup\nAdd the milk, olive oil, 2 cups (300 grams) of the flour, and the salt. Stir with a wooden spoon until a loose dough forms.\n250 ml (1 cup) non-dairy milk,3 tablespoons olive oil,~500 grams (3 – 3 ½ cup) whole sprouted spelt flour *,1 teaspoon sea salt\nAdd the remaining flour ½ cup at a time, kneading between each addition, until a smooth, springy dough forms. This should take 6-8 minutes. It should be quite smooth and not really sticky. If you're using a stand mixer, use the dough attachment for this.\n\nPlace the dough into a large greased bowl and cover with a tea towel or large plate. Let it rise in a warm, draft-free place for one hour, or until doubled in size. This is called proofing.\nWhen the dough has risen, punch it down gently and place it into a parchment-lined or well greased standard-size** loaf pan, tucking any untidy ends underneath. Cover with a tea towel and place the loaf into a warm place to rise again for half an hour longer. While it's rising, heat your oven to 180°C (350°F).\nBake the bread for about 45 minutes, or until golden, and it sounds hollow when tapped. Remove from the pan and cool for ten minutes on a rack before cutting.\nStore the bread in a sealed container for up to three days, or freeze for up to a month.",
-      "ingredientsAndMeasures": [
-        {
-          "ingredient": "Spelt Flour",
-          "measure": "500g"
-        },
-        {
-          "ingredient": "Milk",
-          "measure": "250ml"
-        },
-        {
-          "ingredient": "Salt",
-          "measure": "5g"
-        },
-        {
-          "ingredient": "Yast",
-          "measure": "5g"
-        },
-        {
-          "ingredient": "Olive Oil",
-          "measure": "4 tbsp"
-        }
-      ],
-      "category": "Miscellaneous",
-      "country": "Syria",
-      "tags": "spelt, bread",
-      "source": "User",
-      "youtube": "",
-      "id": 1
-    },
-    {
       "name": "Merengue",
       "thumbnail": "https://sugarspunrun.com/wp-content/uploads/2017/11/Meringues-cookie-recipe-1-of-1-675x675.jpg",
       "recipe": "Preheat oven to 225F (105C) and line a large cookie sheet (or two regular-sized cookie sheets -- make sure they will fit in your oven together) with parchment paper. Set aside.\nCombine egg whites, cream of tartar, and salt in a large, completely clean, completely grease-free bowl².\n4 large egg whites,½ teaspoon cream of tartar,⅛ teaspoon salt\nUsing an electric mixer or a stand mixer (with either the whisk or paddle attachment), stir on low speed until mixture becomes foamy.\nIncrease speed to high.\nWith mixer on high, gradually add sugar, about 1 Tablespoon at a time, stirring after each addition until sugar is dissolved (about 15-20 seconds between each addition).\n1 cup (200 g) granulated sugar\n\nBeat until mixture is thick, shiny, and has increased in volume. Mixture should have stiff peaks and sugar should be completely dissolved (you can test this by rubbing a small bit of the mixture between your fingers, if it feels gritty, the sugar isn't dissolved).\nStir in vanilla extract and any other extract you may like to use.  If using food coloring, add the food coloring at this stage, too.\n1 teaspoon vanilla extract¹\nFit a large disposable piping bag with a large tip (I used Ateco 846, but any large star tip will work or you can just snip the edge of the piping bag for a “kiss” formation) and transfer meringue to prepared piping bag and pipe onto prepared cookie sheet. The meringue cookies can be pretty close to each other as they won’t spread, and you will want to bake all of the cookies at the same time, so make sure you make enough space.\nBake on 225F (105C) for 1 hour. Turn off the oven once the baking time has passed, and do not open the oven. Leave the oven door closed and allow cookies to cool completely in the oven (1-2 hours) before removing.\nMeringue cookies should be crisp and can be stored in an airtight container. Keep away from heat and moisture as it can soften your meringues.",
       "ingredientsAndMeasures": [
         {
+          "id": 0,
           "ingredient": "Egg white",
           "measure": "4"
         },
         {
-          "ingredient": "Salt",
-          "measure": "1g"
-        },
-        {
-          "ingredient": "Sugar",
-          "measure": "200g"
-        },
-        {
+          "id": 2,
           "ingredient": "Vanilla Extract",
           "measure": "1 tbsp"
+        },
+        {
+          "id": 3,
+          "ingredient": "Salt",
+          "measure": "1g"
         }
       ],
       "category": "Dessert",
@@ -61,6 +27,44 @@
       "source": "User",
       "youtube": "",
       "id": 2
+    },
+    {
+      "name": "Simple Spelt Bread",
+      "thumbnail": "https://www.occasionallyeggs.com/wp-content/uploads/2020/03/Spelt-Bread-main.jpg",
+      "recipe": "Add the water and honey to a large bowl, or the bowl of your stand mixer. Sprinkle the yeast over top and let it sit for ten minutes. After ten minutes, it should be foamy. If the mixture doesn't foam, discard – you need new yeast.\\n60 ml (¼ cup) warm water,2 ¼ teaspoons yeast,1 tablespoon honey or maple syrup\\nAdd the milk, olive oil, 2 cups (300 grams) of the flour, and the salt. Stir with a wooden spoon until a loose dough forms.\\n250 ml (1 cup) non-dairy milk,3 tablespoons olive oil,~500 grams (3 – 3 ½ cup) whole sprouted spelt flour *,1 teaspoon sea salt\\nAdd the remaining flour ½ cup at a time, kneading between each addition, until a smooth, springy dough forms. This should take 6-8 minutes. It should be quite smooth and not really sticky. If you're using a stand mixer, use the dough attachment for this.\\n\\nPlace the dough into a large greased bowl and cover with a tea towel or large plate. Let it rise in a warm, draft-free place for one hour, or until doubled in size. This is called proofing.\\nWhen the dough has risen, punch it down gently and place it into a parchment-lined or well greased standard-size** loaf pan, tucking any untidy ends underneath. Cover with a tea towel and place the loaf into a warm place to rise again for half an hour longer. While it's rising, heat your oven to 180°C (350°F).\\nBake the bread for about 45 minutes, or until golden, and it sounds hollow when tapped. Remove from the pan and cool for ten minutes on a rack before cutting.\\nStore the bread in a sealed container for up to three days, or freeze for up to a month.",
+      "ingredientsAndMeasures": [
+        {
+          "id": 0,
+          "ingredient": "Spelt Flour",
+          "measure": "450-500g"
+        },
+        {
+          "id": 1,
+          "ingredient": "Milk",
+          "measure": "220ml"
+        },
+        {
+          "id": 3,
+          "ingredient": "Yeast",
+          "measure": "7g"
+        },
+        {
+          "id": 4,
+          "ingredient": "Olive Oil",
+          "measure": "4 tbsp"
+        },
+        {
+          "id": 5,
+          "ingredient": "Salt",
+          "measure": "5g"
+        }
+      ],
+      "category": "Miscellaneous",
+      "country": "Albania",
+      "tags": "bread",
+      "source": "User",
+      "youtube": "",
+      "id": 1
     }
   ]
 }

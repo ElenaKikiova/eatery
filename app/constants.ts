@@ -21,9 +21,9 @@ export const ERRORS = {
 };
 
 export const VALIDATORS = {
-	NAME: /([A-Za-z0-9]){3,}\w+/,
+	NAME: /([A-Za-z0-9]){2,}\w+/,
 	URL: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
-	INGREDIENT_NAME: /([A-Za-z0-9]){2,}\w+/,
+	INGREDIENT_NAME: /([A-Za-z0-9]){1,}\w+/,
 	INGREDIENT_MEASURE: /([A-Za-z0-9]){1,}/,
 };
 
@@ -33,4 +33,10 @@ export const VALIDATION_ERRORS = {
 	URL: "Enter a valid url",
 	INGREDIENT_NAME: "Ingredient should be at least 2 characters",
 	INGREDIENT_MEASURE: "Ingredient measure should be at least 1 character",
+};
+
+export const IconSizes = {
+	small: "15px",
+	medium: "20px",
+	big: "35px",
 };

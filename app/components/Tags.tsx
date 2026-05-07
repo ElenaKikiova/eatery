@@ -4,8 +4,14 @@ import { Button } from "./Button";
 import { ErrorMessage } from "./ErrorMessage";
 import { IconButton } from "./IconButton";
 
-export const Tags = ({ onChange }: { onChange: (tags: string[]) => void }) => {
-	const [tags, setTags] = useState<string[]>([]);
+export const Tags = ({
+	prefill,
+	onChange,
+}: {
+	prefill?: string | null;
+	onChange: (tags: string[]) => void;
+}) => {
+	const [tags, setTags] = useState<string[]>(prefill?.split(", ") || []);
 	const [value, setValue] = useState<string>("");
 	const [error, setError] = useState<string>("");
 	const addTag = (value: string) => {

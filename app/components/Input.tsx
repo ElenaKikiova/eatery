@@ -35,7 +35,7 @@ export const Input = ({
 		<div>
 			<div className={`flex gap-3 ${multiline ? "flex-col" : "items-center"}`}>
 				<label htmlFor={`input-${id}`}>{label}</label>
-				{multiline ? <textarea {...props} /> : <input {...props}></input>}
+				{multiline ? <textarea {...props} rows={10} /> : <input {...props}></input>}
 			</div>
 
 			{error && <ErrorMessage padding='pb-2'>{error.message}</ErrorMessage>}
