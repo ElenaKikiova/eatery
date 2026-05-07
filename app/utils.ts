@@ -44,6 +44,7 @@ export const mapMeal = (meal: RawMealType): MealType => {
 	});
 
 	const ingredientsAndMeasures = Object.values(ingredientsMap);
+	const tags = meal.strTags;
 	return {
 		id: meal.idMeal,
 		name: meal.strMeal,
@@ -54,7 +55,7 @@ export const mapMeal = (meal: RawMealType): MealType => {
 		youtube: meal.strYoutube,
 		source: meal.strSource,
 		ingredientsAndMeasures,
-		tags: meal.strTags,
+		tags: tags ? tags.toLowerCase().split(",").join(", ") : null,
 	};
 };
 export const createEmptyIngredientsRow = (id: number) => ({

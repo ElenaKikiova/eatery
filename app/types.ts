@@ -36,7 +36,7 @@ export type MealType = {
 	recipe: string;
 	source: string;
 	youtube: string;
-	tags: string;
+	tags: string | null;
 };
 
 export type RawDataKey = "strCategory" | "strCountry";

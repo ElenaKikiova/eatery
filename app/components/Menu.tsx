@@ -8,19 +8,19 @@ export default function Menu() {
 				THE EATERY
 			</Link>
 			<div className='flex items-center justify-center gap-3'>
-				<Link href='/meal/random' className='px-2 flex items-end justify-center'>
+				<Link href='/meals/random' className='px-2 flex items-end justify-center'>
 					Random meal
 				</Link>
-				<Link href='/meal/by-category' className='px-2 flex items-end justify-center'>
+				<Link href='/meals/by-category' className='px-2 flex items-end justify-center'>
 					By category
 				</Link>
-				<Link href='/meal/by-country' className='px-2 flex items-end justify-center'>
+				<Link href='/meals/by-country' className='px-2 flex items-end justify-center'>
 					By country
 				</Link>
-				<Link href='/meal/submit' className='px-2 flex items-end justify-center'>
+				<Link href='/my-recipes/submit' className='px-2 flex items-end justify-center'>
 					Submit a recipe!
 				</Link>
-				<Link href='/meal/my-recipes/' className='px-2 flex items-end justify-center'>
+				<Link href='/my-recipes/' className='px-2 flex items-end justify-center'>
 					My recipes
 				</Link>
 			</div>

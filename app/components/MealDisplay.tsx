@@ -13,10 +13,17 @@ type MealDisplayType = {
 export const MealDisplay = ({ meal, fullDisplay = false }: MealDisplayType) => {
 	if (meal === null) return <Loader />;
 
-	const { id, thumbnail, name, category, country, ingredientsAndMeasures, recipe, youtube } =
-		meal;
-
-	const goToYoutube = () => redirect(youtube);
+	const {
+		id,
+		thumbnail,
+		name,
+		category,
+		country,
+		ingredientsAndMeasures,
+		recipe,
+		youtube,
+		tags,
+	} = meal;
 
 	return (
 		<div
@@ -27,34 +34,41 @@ export const MealDisplay = ({ meal, fullDisplay = false }: MealDisplayType) => {
 			<div>
 				<img
 					src={thumbnail}
-					className={fullDisplay ? "float-left max-w-[400px] mr-4 mb-2" : ""}
+					className={fullDisplay ? "float-left max-w-[250px] mr-4 mb-2" : ""}
 				/>
 				<p className='text-2xl my-1'>{name}</p>
 				<p className='font-bold'>Category: {category}</p>
 				<p className='font-bold'>Country: {country}</p>
-				<p className='font-bold mt-4'>Ingredients: </p>
-				{ingredientsAndMeasures.map(({ ingredient, measure }, index) => (
-					<p key={index}>
-						{ingredient} - {measure}
-					</p>
-				))}
+				{tags && <p className='font-bold'>Tags: {tags}</p>}
+				<div className='my-4'>
+					<p className='font-bold'>Ingredients: </p>
+					{ingredientsAndMeasures.map(({ ingredient, measure }, index) => (
+						<p key={index}>
+							{ingredient} - {measure}
+						</p>
+					))}
+				</div>
 				{fullDisplay && (
-					<>
-						{youtube && (
-							<IconButton
-								icon='youtube'
-								size='big'
-								onClick={() => redirect(youtube)}
-							/>
+					<div>
+						{youtube ? (
+							<div className='flex gap-2 items-center'>
+								<p className='font-bold'>Recipe: also available on Youtube!</p>
+								<IconButton
+									icon='youtube'
+									size='big'
+									onClick={() => redirect(youtube)}
+								/>
+							</div>
+						) : (
+							<p className='font-bold'>Recipe:</p>
 						)}
-						<p className='font-bold mt-4'>Recipe: </p>
 						<p>{recipe}</p>
-					</>
+					</div>
 				)}
 			</div>
 			{!fullDisplay && (
 				<div className='flex flex-col justify-end absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-b from-transparent to-[var(--background)]'>
-					<Link href={`/meal/by-id/${id}`} className='text-center'>
+					<Link href={`/meals/by-id/${id}`} className='text-center'>
 						<Button>Click to read whole recipe</Button>
 					</Link>
 				</div>

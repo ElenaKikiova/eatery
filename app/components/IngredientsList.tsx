@@ -3,7 +3,7 @@ import { Button } from "./Button";
 import { Input } from "./Input";
 import { IngredientsAndMeasures, InputsType } from "../types";
 import { createEmptyIngredientsRow } from "../utils";
-import { formFields } from "../meal/submit/formFields";
+import { formFields } from "../my-recipes/submit/formFields";
 import { FieldErrors, UseFormRegister, UseFormUnregister } from "react-hook-form";
 import { IconButton } from "./IconButton";
 

@@ -14,7 +14,7 @@ export const Button = ({
 	onClick,
 }: ButtonType) => {
 	const styles = isIcon
-		? "h-4 px-0 py-0 text-[var(--lightGrey)]"
+		? "px-0 py-0 text-[var(--lightGrey)]"
 		: "px-4 py-1 border border-[var(--grey)] rounded";
 	return (
 		<button

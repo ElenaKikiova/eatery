@@ -33,7 +33,7 @@ export default function Submit() {
 			...data,
 			category,
 			country,
-			tags: tags.join(","),
+			tags: tags.join(", "),
 			source: "User",
 			youtube: "",
 		};
