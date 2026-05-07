@@ -17,6 +17,7 @@ export const ERRORS = {
 	INVALID_ID: "Please enter a valid id",
 	NOT_FOUND: "Not found",
 	SAVE_RECIPE: "An error occured while saving your recipe. Please try again later",
+	LOCAL_RECIPES: "There was an error while fetching submitted recipes. Please try again later",
 };
 
 export const VALIDATORS = {

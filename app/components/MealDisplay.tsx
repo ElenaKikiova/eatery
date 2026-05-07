@@ -2,6 +2,8 @@ import Link from "next/link";
 import { MealType } from "../types";
 import { Loader } from "./Loader";
 import { Button } from "./Button";
+import { IconButton } from "./IconButton";
+import { redirect } from "next/navigation";
 
 type MealDisplayType = {
 	meal: MealType | null;
@@ -11,7 +13,11 @@ type MealDisplayType = {
 export const MealDisplay = ({ meal, fullDisplay = false }: MealDisplayType) => {
 	if (meal === null) return <Loader />;
 
-	const { id, thumbnail, name, category, country, ingredientsAndMeasures, recipe } = meal;
+	const { id, thumbnail, name, category, country, ingredientsAndMeasures, recipe, youtube } =
+		meal;
+
+	const goToYoutube = () => redirect(youtube);
+
 	return (
 		<div
 			className={`relative flex flex-col gap-2 ${
@@ -34,6 +40,13 @@ export const MealDisplay = ({ meal, fullDisplay = false }: MealDisplayType) => {
 				))}
 				{fullDisplay && (
 					<>
+						{youtube && (
+							<IconButton
+								icon='youtube'
+								size='big'
+								onClick={() => redirect(youtube)}
+							/>
+						)}
 						<p className='font-bold mt-4'>Recipe: </p>
 						<p>{recipe}</p>
 					</>

@@ -9,12 +9,13 @@ export const Tags = ({ onChange }: { onChange: (tags: string[]) => void }) => {
 	const [value, setValue] = useState<string>("");
 	const [error, setError] = useState<string>("");
 	const addTag = (value: string) => {
-		console.log(value);
 		setValue(value);
 	};
 
 	const onTagAdd = () => {
-		if (tags.indexOf(value) > -1) setError("This tag already exists");
+		const trimmed = value.trim();
+		if (trimmed.length === 0) setError("Please enter tag");
+		else if (tags.indexOf(value) > -1) setError("This tag already exists");
 		else {
 			setError("");
 			const newTags = [...tags, value];

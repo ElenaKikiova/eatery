@@ -1,17 +1,27 @@
 import { IoMdClose } from "react-icons/io";
+import { FaYoutube } from "react-icons/fa";
 import { Button } from "./Button";
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { IconType } from "react-icons";
+import { IconSize } from "../types";
 
-export const ICONS: Record<string, ReactNode> = {
-	close: <IoMdClose />,
+const ICONS: Record<string, IconType> = {
+	close: IoMdClose,
+	youtube: FaYoutube,
 };
 
-export const IconButton = ({ icon, onClick }: { icon: string; onClick: () => void }) => {
-	let iconElement = ICONS[icon];
+type IconButtonType = {
+	icon: string;
+	size?: IconSize;
+	onClick?: () => void;
+};
+
+export const IconButton = ({ icon, size = "small" as IconSize, onClick }: IconButtonType) => {
+	let Icon = ICONS[icon];
+	const sizePx = size === "small" ? "15px" : "35px";
 
 	return (
-		<Button isIcon {...onClick}>
-			{iconElement}
+		<Button isIcon onClick={onClick}>
+			<Icon size={sizePx} />
 		</Button>
 	);
 };

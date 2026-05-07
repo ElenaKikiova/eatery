@@ -1,46 +1,37 @@
 {
-  "submitted-recipes": [
-    {
-      "name": "Cake",
-      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfSUBIsHUDi5GInGBsXeUjqLpaWlqH5OkJBQA-WMJOrQQFAdlT-L1RILAehG18QZ4nAqi3J7ZYDjNeSa1cuGHAqLW2moP5sS3qzR7pf_Mmvw&s=10",
-      "recipe": "sdff",
-      "ingredientsAndMeasures": [
-        {
-          "ingredient": "sfd",
-          "measure": "sdf"
-        },
-        {
-          "ingredient": "sdf",
-          "measure": "sfd"
-        }
-      ],
-      "category": "Chicken",
-      "country": "Mexico",
-      "tags": "cake",
-      "source": "User",
-      "youtube": "",
-      "id": 1
-    },
-    {
-      "name": "Cake",
-      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfSUBIsHUDi5GInGBsXeUjqLpaWlqH5OkJBQA-WMJOrQQFAdlT-L1RILAehG18QZ4nAqi3J7ZYDjNeSa1cuGHAqLW2moP5sS3qzR7pf_Mmvw&s=10",
-      "recipe": "sfd",
-      "ingredientsAndMeasures": [
-        {
-          "ingredient": "dfgf",
-          "measure": "sfd"
-        },
-        {
-          "ingredient": "fdg",
-          "measure": "dsf"
-        }
-      ],
-      "category": "Lamb",
-      "country": "Mexico",
-      "tags": "df",
-      "source": "User",
-      "youtube": "",
-      "id": 2
-    }
-  ]
+	"submitted-recipes": [
+		{
+			"name": "Simple Spelt Bread",
+			"thumbnail": "https://www.occasionallyeggs.com/wp-content/uploads/2020/03/Spelt-Bread-main.jpg",
+			"recipe": "Add the water and honey to a large bowl, or the bowl of your stand mixer. Sprinkle the yeast over top and let it sit for ten minutes. After ten minutes, it should be foamy. If the mixture doesn't foam, discard – you need new yeast.\n60 ml (¼ cup) warm water,2 ¼ teaspoons yeast,1 tablespoon honey or maple syrup\nAdd the milk, olive oil, 2 cups (300 grams) of the flour, and the salt. Stir with a wooden spoon until a loose dough forms.\n250 ml (1 cup) non-dairy milk,3 tablespoons olive oil,~500 grams (3 – 3 ½ cup) whole sprouted spelt flour *,1 teaspoon sea salt\nAdd the remaining flour ½ cup at a time, kneading between each addition, until a smooth, springy dough forms. This should take 6-8 minutes. It should be quite smooth and not really sticky. If you're using a stand mixer, use the dough attachment for this.\n\nPlace the dough into a large greased bowl and cover with a tea towel or large plate. Let it rise in a warm, draft-free place for one hour, or until doubled in size. This is called proofing.\nWhen the dough has risen, punch it down gently and place it into a parchment-lined or well greased standard-size** loaf pan, tucking any untidy ends underneath. Cover with a tea towel and place the loaf into a warm place to rise again for half an hour longer. While it's rising, heat your oven to 180°C (350°F).\nBake the bread for about 45 minutes, or until golden, and it sounds hollow when tapped. Remove from the pan and cool for ten minutes on a rack before cutting.\nStore the bread in a sealed container for up to three days, or freeze for up to a month.",
+			"ingredientsAndMeasures": [
+				{
+					"ingredient": "Spelt Flour",
+					"measure": "500g"
+				},
+				{
+					"ingredient": "Milk",
+					"measure": "250ml"
+				},
+				{
+					"ingredient": "Salt",
+					"measure": "5g"
+				},
+				{
+					"ingredient": "Yast",
+					"measure": "5g"
+				},
+				{
+					"ingredient": "Olive Oil",
+					"measure": "4 tbsp"
+				}
+			],
+			"category": "Miscellaneous",
+			"country": "Syria",
+			"tags": "spelt,bread",
+			"source": "User",
+			"youtube": "",
+			"id": 1
+		}
+	]
 }

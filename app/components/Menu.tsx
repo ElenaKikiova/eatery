@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Menu() {
 	return (
-		<nav className='flex p-5 sticky top-0 left-0 bg-[var(--background)]'>
+		<nav className='flex p-5 sticky z-5 top-0 left-0 bg-[var(--background)]'>
 			<Link href='/' className='font-bold text-4xl items-end mx-5'>
 				THE EATERY
 			</Link>
@@ -19,6 +19,9 @@ export default function Menu() {
 				</Link>
 				<Link href='/meal/submit' className='px-2 flex items-end justify-center'>
 					Submit a recipe!
+				</Link>
+				<Link href='/meal/my-recipes/' className='px-2 flex items-end justify-center'>
+					My recipes
 				</Link>
 			</div>
 		</nav>

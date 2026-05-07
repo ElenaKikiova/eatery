@@ -29,8 +29,6 @@ export default function Submit() {
 	const [error, setError] = useState<string>("");
 
 	const onSubmit: SubmitHandler<InputsType> = (data) => {
-		console.log(data);
-
 		const recipeObj = {
 			...data,
 			category,
